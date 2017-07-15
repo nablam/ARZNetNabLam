@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - GridPoint
+  - SpatialMesh
+  - ZombieHead
+  - ZombieTorso
+  - ZombieLimb
+  - ZombieNonLethal
+  - ZombieArm
+  - Ammo
+  - Interactive
+  - Pistol
+  - Magnum
+  - Uzi
+  - Shotgun
+  - MagnumAmmo
+  - UziClip
+  - ShotgunAmmo
+  - RackWeapon
+  - Fire
+  - PlayerGun
+  - UIObject
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - GridMap
+  - Enemy
+  - MoveCollider
+  - Player
+  - Barrier
+  - Pickup
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - SpatialMapping
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
