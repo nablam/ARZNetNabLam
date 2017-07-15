@@ -1,0 +1,25 @@
+1- make empty asset folder struct 
+2- make a new project unity
+3-save scene
+4-add folderstruct
+5-import packages
+6 check work
+
+///nah
+
+copy paste arzsingle HEAD on DevUnet (get commit) 
+isolate assets folder , 
+run the clean and .gitkeep
+make a testgitkeep scene
+test it 
+IT WORKS
+
+I have bare bone 
+
+git this tghing before enemypacks
+
+
+import the enemies pack
+
+
+
