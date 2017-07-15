@@ -6,23 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 08806d69502740c4abf51bdf5c9814ce
-  - enabled: 1
-    path: Assets/Scenes/ScanRoom.unity
-    guid: 5dca256e357660442a29d58e42aeaee6
-  - enabled: 1
-    path: Assets/Scenes/EditMap.unity
-    guid: 027fce55ae38e9341921f869b7d55393
-  - enabled: 1
-    path: Assets/Scenes/Calibrate.unity
-    guid: 2ae2b2b54b201c64e9f68608ac72b69e
-  - enabled: 1
-    path: Assets/Scenes/Game_NoStem.unity
-    guid: 06687d597b1b96f49b67fe40065e30f1
-  - enabled: 1
-    path: Assets/Scenes/GameShort.unity
-    guid: b8d440c4bee498548855e377607bfaee
-  - enabled: 1
-    path: Assets/Scenes/GameApocalypse.unity
-    guid: 92342ad0b8743e04baf812dd8e76110e
+    path: Assets/HoloToolkit-Examples/SharingWithUNET/Scenes/sharingwithunet.unity
+    guid: 2cb8a97d98d81224c8b7d0495d361558
