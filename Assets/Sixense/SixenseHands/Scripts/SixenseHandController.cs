@@ -1,4 +1,4 @@
-//nabil , link here to playergun .. investigate 
+
 //
 // Copyright (C) 2013 Sixense Entertainment Inc.
 // All Rights Reserved
@@ -13,14 +13,14 @@ public class SixenseHandController : MonoBehaviour
 	protected float				m_fLastTriggerVal = 0.0f;
     protected SixenseCore.TrackerVisual[] m_trackers;
 
-   // private PlayerGun m_gun;
+    private PlayerGun m_gun;
     private UAudioManager m_audio;
     void Start() 
 	{
 		// get the Animator
 		m_animator = gameObject.GetComponent<Animator>();
         m_trackers = gameObject.GetComponentsInChildren<SixenseCore.TrackerVisual>();
-       // m_gun = gameObject.GetComponent<PlayerGun>();
+        m_gun = gameObject.GetComponent<PlayerGun>();
         m_audio = gameObject.GetComponent<UAudioManager>();
     }
 
@@ -55,25 +55,25 @@ public class SixenseHandController : MonoBehaviour
 
 
         // ignore controller input if player is dead
-        //if (GameManager.Instance.isDead)
-        //    return;
+        if (GameManager.Instance.isDead)
+            return;
 
         if (controller.GetButtonDown(SixenseCore.Buttons.TRIGGER))
         {
-            //if (m_gun == null)
-            //    Debug.Log("Player Gun not found");
-            //else
-            //    m_gun.Fire();
+            if (m_gun == null)
+                Debug.Log("Player Gun not found");
+            else
+                m_gun.Fire();
         }
 
         if (controller.GetButtonUp(SixenseCore.Buttons.TRIGGER))
         {
-            //if (m_gun != null)
-            //    m_gun.StopFiring();
+            if (m_gun != null)
+                m_gun.StopFiring();
         }
 
         /*
-        I did not comment this
+
 
         // Point
         if (id == SixenseCore.TrackerID.CONTROLLER_RIGHT ? controller.GetButton(SixenseCore.Buttons.A) : controller.GetButton(SixenseCore.Buttons.X))
