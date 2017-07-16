@@ -56,7 +56,13 @@ public class RoomLoader : MonoBehaviour {
         }
 
         if (managerObject != null)
+        {
             managerObject.SendMessage("RoomLoaded");
+        }
+        else
+        {
+            Debug.Log("NO MANAGER for roomloader");
+        }
     }
 
     void OnDestroy()

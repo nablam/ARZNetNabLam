@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33205970049199946}
   - component: {fileID: 65378694990889198}
   - component: {fileID: 23013506242658024}
+  - component: {fileID: 114907601813888448}
   m_Layer: 0
   m_Name: ButtonClick
   m_TagString: Untagged
@@ -66,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1104437173490388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0.238, y: 0, z: 1}
   m_LocalScale: {x: 0.2, y: 0.1, z: 0.02}
   m_Children:
   - {fileID: 4035483999589276}
@@ -177,3 +178,20 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294901843
+--- !u!114 &114907601813888448
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1104437173490388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e121156b07db23141bea32ea756f1dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSelectEvents:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  ClickerText: yo
