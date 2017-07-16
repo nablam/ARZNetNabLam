@@ -6,5 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/HoloToolkit-Examples/SharingWithUNET/Scenes/sharingwithunet.unity
-    guid: 2cb8a97d98d81224c8b7d0495d361558
+    path: Assets/Scenes/ScanScene.unity
+    guid: 61540a1549a8f954590529ab6caca349
+  - enabled: 1
+    path: Assets/Scenes/EditScene.unity
+    guid: ff91ba111d0d0364fae9f6865cd28a80
+  - enabled: 1
+    path: Assets/Scenes/LobbyScene.unity
+    guid: ddb8471a0ad198345a0741f400a577a6
