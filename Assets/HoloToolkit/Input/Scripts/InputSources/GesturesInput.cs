@@ -160,6 +160,7 @@ namespace HoloToolkit.Unity.InputModule
 #if UNITY_EDITOR || UNITY_WSA
         protected void OnTappedEvent(InteractionSourceKind source, int tapCount, Ray headRay)
         {
+            Debug.Log("nabil tapped");
             inputManager.RaiseInputClicked(this, 0, tapCount);
         }
 
