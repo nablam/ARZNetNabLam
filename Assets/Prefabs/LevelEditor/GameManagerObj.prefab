@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1184924245950458}
+  m_RootGameObject: {fileID: 1987020804082088}
   m_IsPrefabParent: 1
---- !u!1 &1184924245950458
+--- !u!1 &1987020804082088
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4607453992774934}
-  - component: {fileID: 114060360051139046}
+  - component: {fileID: 4013038947738908}
+  - component: {fileID: 114704464635684174}
   m_Layer: 0
-  m_Name: RoomLoader
+  m_Name: GameManagerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4607453992774934
+--- !u!4 &4013038947738908
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1184924245950458}
+  m_GameObject: {fileID: 1987020804082088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5183008, y: -0.021000057, z: 0.50333935}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,20 +40,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114060360051139046
+--- !u!114 &114704464635684174
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1184924245950458}
+  m_GameObject: {fileID: 1987020804082088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa5119dbb20ddac4bb43ef4229280d52, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d6dcde034c95454486a2a36a3546283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerObject: {fileID: 1987020804082088, guid: f0566f378d6c41540b0ff0952ca401e9,
-    type: 2}
-  surfaceObject: {fileID: 1374127937111432, guid: 191b34785cec2504bbdde3592ccd62f4,
-    type: 2}
-  fileName: ARZArena
-  anchorStoreName: ARZRoomMesh
