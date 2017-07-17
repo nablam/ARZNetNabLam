@@ -18,11 +18,24 @@ public class RoomLoader : MonoBehaviour {
     List<Mesh> roomMeshes;                      // list of room meshes
     List<GameObject> roomObjects;               // list of game objects that hold room meshes
 
-	// Use this for initialization
+    // Use this for initialization
+    bool _meshLoaded;
 	void Start () {
-        Debug.Log("async");
-        // get instance of WorldAnchorStore
-        WorldAnchorStore.GetAsync(AnchorStoreReady);
+        _meshLoaded = false;
+        Debug.Log("load meshes async");
+        // get instance of WorldAnchorStore     
+    }
+    public void LoadMeshed() {
+        if (!_meshLoaded)
+        {
+            WorldAnchorStore.GetAsync(AnchorStoreReady);
+        }
+        else
+        {
+            Debug.Log("meshes already loaded");
+        }
+
+
     }
 
     public void ToggleRoom()
@@ -55,9 +68,11 @@ public class RoomLoader : MonoBehaviour {
              if (!anchorStore.Load(surface.name, obj)) Debug.Log("WorldAnchor load failed...");
         }
 
+        _meshLoaded = true;
         if (managerObject != null)
         {
-            managerObject.SendMessage("RoomLoaded");
+            // managerObject.SendMessage("RoomLoaded");
+            Debug.Log("roomloader has a manager named "+ managerObject.name);
         }
         else
         {
@@ -67,10 +82,13 @@ public class RoomLoader : MonoBehaviour {
 
     void OnDestroy()
     {
-        foreach(Mesh mesh in roomMeshes)
+        if (_meshLoaded)
         {
-            Destroy(mesh);
+            foreach (Mesh mesh in roomMeshes)
+            {
+                Destroy(mesh);
+            }
+            roomMeshes.Clear();
         }
-        roomMeshes.Clear();
     }
 }
