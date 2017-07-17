@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSettings : MonoBehaviour {
+    //TestBox
+    //public GameObject E_TestBox;                   //obj.name=TestBox_ES
+    string AnchorName_TestBox = "ARZTestBox";
+    public string GetAnchorName_TestBox() { return AnchorName_TestBox; }
+    
+
 
     //ConsoleObject
     //public GameObject E_ConsoleObject;                   //obj.name=ConsoleObject_ES
@@ -97,7 +103,6 @@ public class GameSettings : MonoBehaviour {
     //AirStrikeStart
     //public GameObject E_AirStrikeStart;                        //obj.name=AirStrikeStart_ES
     string AnchorName_AirStrikeStart = "ARZAirStrikeStart";
-
     public string GetAnchorName_AirStrikeStart() { return AnchorName_AirStrikeStart; }
 
     //AirStrikeEnd
@@ -108,14 +113,28 @@ public class GameSettings : MonoBehaviour {
 
 
 
+    public int latMaster;
+    public int heiMaster;
+    //segment size is used in gridpoint, gridmap and pathfinder
+    public float SegmentSizeMaster;
+    public float BottomSegmentSizeMaster;
 
+    public bool IsTestMode;
+    public float Zspeed;
+    public float ZRotateSpeed;
 
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // spawnpoint spawns TotalZombiesToSpawn zombies . One Zombiew evry SpawnInterval 
+    public float SpawnInterval;
+    public int TotalZombiesToSpawn;
+
+    void Start()
+    {
+        // IsTestMode = false;
+        SpawnInterval = 1f;
+        TotalZombiesToSpawn = 3;
+        BottomSegmentSizeMaster = 3f;
+
+        Zspeed = 3f;
+        ZRotateSpeed = 10f;
+    }
 }

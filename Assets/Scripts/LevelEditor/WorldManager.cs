@@ -390,6 +390,7 @@ public class WorldManager : MonoBehaviour
                 hotspotIds.Add(ids[index]);
             }
         }
+///////////////////////ENDFORLOOP
 
 
         // load and instantiate all infinite ammo boxes

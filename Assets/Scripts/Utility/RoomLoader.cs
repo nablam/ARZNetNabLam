@@ -40,13 +40,17 @@ public class RoomLoader : MonoBehaviour {
 
     public void ToggleRoom()
     {
-        foreach(GameObject obj in roomObjects)
+        if (_meshLoaded)
         {
-            if (obj.activeInHierarchy)
-                obj.SetActive(false);
-            else
-                obj.SetActive(true);
+            foreach (GameObject obj in roomObjects)
+            {
+                if (obj.activeInHierarchy)
+                    obj.SetActive(false);
+                else
+                    obj.SetActive(true);
+            }
         }
+
     }
 
     void AnchorStoreReady(WorldAnchorStore store)
