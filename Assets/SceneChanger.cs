@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour {
 
+    string localScenename;
+    private void Start()
+    {
+        localScenename= SceneManager.GetActiveScene().name;
+    }
     public void LoadScene(string argSceneName)
     {
-        string CurSceneName = SceneManager.GetActiveScene().name;
+        
 
-        if (string.Compare(argSceneName, CurSceneName) == 0) {
+        if (string.Compare(argSceneName, localScenename) == 0) {
             return;
         }
     
