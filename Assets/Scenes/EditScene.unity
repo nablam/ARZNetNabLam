@@ -201,9 +201,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1801665077}
-        m_MethodName: 
-        m_Mode: 5
+      - m_Target: {fileID: 1801665078}
+        m_MethodName: LoadMeshed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -601,9 +601,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 1801665078}
+        m_MethodName: ToggleRoom
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -769,11 +769,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 765804ca7f046604daf9000c52f648c1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1801665077 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1184924245950458, guid: 765804ca7f046604daf9000c52f648c1,
+--- !u!114 &1801665078 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114060360051139046, guid: 765804ca7f046604daf9000c52f648c1,
     type: 2}
   m_PrefabInternal: {fileID: 1801665076}
+  m_Script: {fileID: 11500000, guid: fa5119dbb20ddac4bb43ef4229280d52, type: 3}
 --- !u!1 &1914537302
 GameObject:
   m_ObjectHideFlags: 0
