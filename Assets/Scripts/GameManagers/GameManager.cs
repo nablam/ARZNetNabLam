@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
 
         AnchorName_AmmoBoxInfinite = Settings.GetAnchorName_AmmoBoxInfinite();
 
-        AnchorName_PathFinder = Settings.GetAnchorName_PathFinder();
+        AnchorName_PathFinder = Settings.GetAnchorName_GridMap();
 
         AnchorName_WalkieTalkie = Settings.GetAnchorName_WalkieTalkie();
 

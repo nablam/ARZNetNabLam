@@ -23,4 +23,24 @@ public class ObjsManager : MonoBehaviour {
 
     }
 
+
+    public GameObject GettheRightObjectFromAfullid(string fullid2) {
+
+        if (fullid2.Contains(GameSettings.Instance.GetAnchorName_TestBox())) { return PlaceHolder_TestBox; }
+        else
+                if (fullid2.Contains(GameSettings.Instance.GetAnchorName_GridMap())) { return PlaceHolder_GridMap; }
+        else
+
+            if (fullid2.Contains(GameSettings.Instance.GetAnchorName_ZoneOne())) { return PlaceHolder_ZoneOne; }
+        else
+
+            if (fullid2.Contains(GameSettings.Instance.GetAnchorName_ZoneTwo())) { return PlaceHolder_ZoneTwo; }
+
+        else
+            return null;
+
+
+    }
+
+
 }

@@ -87,8 +87,16 @@ public class GameSettings : MonoBehaviour {
 
     //PathFinder
     //public GameObject E_PathFinder;                    //obj.name=PathFinder_ES
-    string AnchorName_PathFinder = "ARZPathFinder";
-    public string GetAnchorName_PathFinder() { return AnchorName_PathFinder; }
+    string AnchorName_GridMap = "ARZGridMap";
+    public string GetAnchorName_GridMap() { return AnchorName_GridMap; }
+
+    //ZONE1
+     string AnchorName_ZoneOne = "ARZZoneOne";
+    public string GetAnchorName_ZoneOne() { return AnchorName_ZoneOne; }
+    //ZONE2
+    string AnchorName_ZoneTwo = "ARZZoneTwo";
+    public string GetAnchorName_ZoneTwo() { return AnchorName_ZoneTwo; }
+
 
 
     //WalkieTalkie

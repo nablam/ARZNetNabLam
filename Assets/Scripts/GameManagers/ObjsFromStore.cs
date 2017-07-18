@@ -30,13 +30,13 @@ public class ObjsFromStore : MonoBehaviour
 
     void AnchorStoreReady(WorldAnchorStore store)
     {
-        testBoxIds = new List<string>();
+        AllIds = new List<string>();
         testBoxes = new List<GameObject>();
         anchorStore = store;
         LoadObjects(_objsMngr);
     }
 
-    List<string> testBoxIds;
+    List<string> AllIds;
     List<GameObject> testBoxes;
 
     void LoadObjects(ObjsManager argObjsMngr)
@@ -53,7 +53,41 @@ public class ObjsFromStore : MonoBehaviour
                 Debug.Log(" ID INT " + thisId);
 
                 // add id to string list to instantiate later
-                 testBoxIds.Add(ids[index]);
+                 AllIds.Add(ids[index]);
+            }
+            else
+            if (ids[index].Contains(GameSettings.Instance.GetAnchorName_GridMap()))
+            {
+                Debug.Log("we contain " + GameSettings.Instance.GetAnchorName_GridMap());
+                // get id number
+                int thisId = int.Parse(ids[index].Substring(GameSettings.Instance.GetAnchorName_GridMap().Length));
+                Debug.Log(" ID INT " + thisId);
+
+                // add id to string list to instantiate later
+                AllIds.Add(ids[index]);
+            }
+            else
+            if (ids[index].Contains(GameSettings.Instance.GetAnchorName_ZoneOne()))
+            {
+                Debug.Log("we contain " + GameSettings.Instance.GetAnchorName_ZoneOne());
+                // get id number
+                int thisId = int.Parse(ids[index].Substring(GameSettings.Instance.GetAnchorName_ZoneOne().Length));
+                Debug.Log(" ID INT " + thisId);
+
+                // add id to string list to instantiate later
+                AllIds.Add(ids[index]);
+            }
+
+            else
+            if (ids[index].Contains(GameSettings.Instance.GetAnchorName_ZoneTwo()))
+            {
+                Debug.Log("we contain " + GameSettings.Instance.GetAnchorName_ZoneTwo());
+                // get id number
+                int thisId = int.Parse(ids[index].Substring(GameSettings.Instance.GetAnchorName_ZoneTwo().Length));
+                Debug.Log(" ID INT " + thisId);
+
+                // add id to string list to instantiate later
+                AllIds.Add(ids[index]);
             }
             //els if id is sosoos
             //  Debug.Log("storename is "+ anchorStore.N)
@@ -61,11 +95,11 @@ public class ObjsFromStore : MonoBehaviour
         }
         ////ENDForloop
         // load and instantiate all infinite ammo boxes
-        foreach (string id in testBoxIds)
+        foreach (string id in AllIds)
         {
             TransData TToGet =DictoPlacedObjects.Instance.DICT_FindTrans(id);
             Debug.Log("getting t from gameeditor list   " + TToGet.GetID());
-            testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.PlaceHolder_TestBox, id, TToGet.Getpos(), TToGet.GetRot()));
+            testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.GettheRightObjectFromAfullid(id), id, TToGet.Getpos(), TToGet.GetRot()));
         }
 
     }

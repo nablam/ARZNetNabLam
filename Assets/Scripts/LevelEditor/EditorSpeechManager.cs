@@ -23,7 +23,10 @@ public class EditorSpeechManager : MonoBehaviour
     void EditorKeyboardInputs()
     {
         if (Input.GetKeyDown(KeyCode.Q)) { gameEditorManager.PlaceTestBox(); }
-        //if (Input.GetKeyDown(KeyCode.X)) { worldManager.CreatePathFinder(); }
+        if (Input.GetKeyDown(KeyCode.W)) { gameEditorManager.PlaceGridMap(); }
+        if (Input.GetKeyDown(KeyCode.E)) { gameEditorManager.PlaceZone1(); }
+        if (Input.GetKeyDown(KeyCode.R)) { gameEditorManager.PlaceZone2(); }
+
         //if (Input.GetKeyDown(KeyCode.C)) { worldManager.CreateBarrier(); }
         //if (Input.GetKeyDown(KeyCode.V)) { worldManager.CreateScoreboard(); }
         //if (Input.GetKeyDown(KeyCode.B)) { worldManager.CreateWeaponsRack(); }
@@ -52,7 +55,7 @@ public class EditorSpeechManager : MonoBehaviour
 
 
     }
-    
+
     void Update()
     {
        EditorKeyboardInputs();
@@ -80,6 +83,21 @@ public class EditorSpeechManager : MonoBehaviour
         keywords.Add("Place test box", () =>
         {
             gameEditorManager.PlaceTestBox();
+        });
+
+        keywords.Add("Place grid map", () =>
+        {
+            gameEditorManager.PlaceGridMap();
+        });
+
+        keywords.Add("Place zone one", () =>
+        {
+            gameEditorManager.PlaceZone1();
+        });
+
+        keywords.Add("Place zone two", () =>
+        {
+            gameEditorManager.PlaceZone2();
         });
 
         //keywords.Add("Remove", () =>

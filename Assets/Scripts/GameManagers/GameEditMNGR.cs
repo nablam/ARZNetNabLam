@@ -20,34 +20,6 @@ public class GameEditMNGR : MonoBehaviour {
     //ObjsManager.Instance is global just for testing
     #endregion
 
-    //REMOVE FROM HERE 
-    public GameObject TestBoxObj;
-    //DONE list of things to gemove
-
-
-
- 
-    public void PlaceTestBox() {
-        Debug.Log("placing test box");
-
-        if (GazeManager.Instance.isActiveAndEnabled)
-        {
-            GameObject go = Instantiate(TestBoxObj, GazeManager.Instance.HitInfo.point, Quaternion.identity) as GameObject;
-           
-            string thename = GameSettings.Instance.GetAnchorName_TestBox() +  DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
-            go.name = thename;
-
-            DictoPlacedObjects.Instance.PlacedATestbox(go);
-            Debug.Log("placing " + thename);
-            //   _NumberOfPlacedTestBoxes++;
-            //  string id = Settings.GetAnchorName_TestBox() + _NumberOfPlacedTestBoxes;
-            // testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(TestBoxObj, id, GazeManager.Instance.HitInfo.point, Quaternion.identity));
-
-        }
-    }
-
-    
-
     public void OKSAveAll( ) {
         DictoPlacedObjects.Instance.oksavingallplaced(ObjsToStoreOBJ);
     }
@@ -60,6 +32,73 @@ public class GameEditMNGR : MonoBehaviour {
 
 
 
+
+    public void PlaceTestBox()
+    {
+        Debug.Log("placing test box");
+
+        if (GazeManager.Instance.isActiveAndEnabled)
+        {
+            GameObject go = Instantiate(ObjsMngr.PlaceHolder_TestBox, GazeManager.Instance.HitInfo.point, Quaternion.identity) as GameObject;
+
+            string thename = GameSettings.Instance.GetAnchorName_TestBox() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
+            go.name = thename;
+
+            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            Debug.Log("placing " + thename);
+        }
+    }
+
+
+
+    public void PlaceGridMap()
+    {
+        Debug.Log("placing GridMap");
+
+        if (GazeManager.Instance.isActiveAndEnabled)
+        {
+            GameObject go = Instantiate(ObjsMngr.PlaceHolder_GridMap, GazeManager.Instance.HitInfo.point, Quaternion.identity) as GameObject;
+
+            string thename = GameSettings.Instance.GetAnchorName_GridMap() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
+            go.name = thename;
+
+            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            Debug.Log("placing " + thename);
+        }
+    }
+
+
+    public void PlaceZone1()
+    {
+        Debug.Log("placing GridMap");
+
+        if (GazeManager.Instance.isActiveAndEnabled)
+        {
+            GameObject go = Instantiate(ObjsMngr.PlaceHolder_ZoneOne, GazeManager.Instance.HitInfo.point, Quaternion.identity) as GameObject;
+
+            string thename = GameSettings.Instance.GetAnchorName_ZoneOne() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
+            go.name = thename;
+
+            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            Debug.Log("placing " + thename);
+        }
+    }
+
+    public void PlaceZone2()
+    {
+        Debug.Log("placing GridMap");
+
+        if (GazeManager.Instance.isActiveAndEnabled)
+        {
+            GameObject go = Instantiate(ObjsMngr.PlaceHolder_ZoneTwo, GazeManager.Instance.HitInfo.point, Quaternion.identity) as GameObject;
+
+            string thename = GameSettings.Instance.GetAnchorName_ZoneTwo() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
+            go.name = thename;
+
+            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            Debug.Log("placing " + thename);
+        }
+    }
 
 
 

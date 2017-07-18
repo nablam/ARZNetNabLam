@@ -22,17 +22,15 @@ public class DictoPlacedObjects : MonoBehaviour {
 
     #region Things to init
     List<TransData> LISTOFALL;
-    int _NumberOfPlacedTestBoxes;
-    List<GameObject> TEMPtestBoxes;
+    int _NumberOfDiversThingsInWolrd;
     List<string> TEMPtestBoxIds;
 
     List<GameObject> TEMPthesePlaedObjects;
     void InitVars()
     {
         LISTOFALL = new List<TransData>();
-        _NumberOfPlacedTestBoxes = 0;
+        _NumberOfDiversThingsInWolrd = 0;
         TEMPtestBoxIds = new List<string>();
-        TEMPtestBoxes = new List<GameObject>();
         TEMPthesePlaedObjects = new List<GameObject>();
     }
     #endregion
@@ -119,7 +117,6 @@ public class DictoPlacedObjects : MonoBehaviour {
     {
         if (pScript.GetBaseName().Contains(GameSettings.Instance.GetAnchorName_TestBox()))
         {
-            TEMPtestBoxes.Remove(pScript.gameObject);
             TEMPthesePlaedObjects.Remove(pScript.gameObject);
         }
     }
@@ -130,10 +127,9 @@ public class DictoPlacedObjects : MonoBehaviour {
         argObjstore.SaveAllTheseBAdBoysToStore(TEMPthesePlaedObjects);
     }
 
-    public int GetNumOfPlacedTestboxes() { return _NumberOfPlacedTestBoxes; }
+    public int GetNumOfPlacedTestboxes() { return _NumberOfDiversThingsInWolrd; }
     public void PlacedATestbox(GameObject go) {
-        _NumberOfPlacedTestBoxes++;
-        TEMPtestBoxes.Add(go);
+        _NumberOfDiversThingsInWolrd++;
         TEMPthesePlaedObjects.Add(go);
     }
 }
