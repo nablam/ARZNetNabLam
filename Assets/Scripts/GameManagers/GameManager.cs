@@ -384,7 +384,7 @@ public class GameManager : MonoBehaviour
 
     private void CreateGrid()
     {
-        GameObject.FindObjectOfType<GridMap>().CreateGrid(!isTestMode);
+        GameObject.FindObjectOfType<GridMap>().Get_ListOfMapGridPoints_GOS();
     }
 
     public GameObject CreateEnemy(GameObject spawnPoint, GameObject enemy)
@@ -400,7 +400,7 @@ public class GameManager : MonoBehaviour
     public void ClearAllToWhite()
     {
         if (isTestMode) {
-            foreach (GameObject p in map.GetGridMap())
+            foreach (GameObject p in map.Get_ListOfMapGridPoints_GOS())
              {
              p.transform.GetChild(1).gameObject.GetComponent<Renderer>().material.color = Color.white;
             }

@@ -41,7 +41,7 @@ public class PathFinder : MonoBehaviour{
         if (startPoint == null)
         {
             GridMap grid = GameObject.FindObjectOfType<GridMap>();
-            List<GameObject> points = grid.GetGridMap();
+            List<GameObject> points = grid.Get_ListOfMapGridPoints_GOS();
             Vector3 transPos = new Vector3(transform.position.x, grid.gridHeight, transform.position.y);
             foreach (GameObject p in points)
             {

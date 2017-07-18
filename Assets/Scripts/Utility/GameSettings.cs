@@ -13,6 +13,7 @@ public class GameSettings : MonoBehaviour {
         if (Instance == null)
         {
             DontDestroyOnLoad(this.gameObject);
+            InitColors();
             Instance = this;
 
         }
@@ -141,7 +142,9 @@ public class GameSettings : MonoBehaviour {
     public float SegmentSizeMaster;
     public float BottomSegmentSizeMaster;
 
-    public bool IsTestMode;
+    public bool IsShowGridPointMesh;
+    public bool IsShowNodeTag;
+
     public float Zspeed;
     public float ZRotateSpeed;
 
@@ -149,15 +152,56 @@ public class GameSettings : MonoBehaviour {
     public float SpawnInterval;
     public int TotalZombiesToSpawn;
 
+    public bool applyCostTweek;
+    public bool IsLeanPath;
+
+    public int numberOfPAthsPerSpawnPoint;
   
     void Start()
     {
-        // IsTestMode = false;
-        SpawnInterval = 1f;
-        TotalZombiesToSpawn = 3;
+        // ShowGridPointMesh = true;
+        // ShowNodeTag = true;
+
+        latMaster = 7;
+        heiMaster = 4;
         BottomSegmentSizeMaster = 3f;
 
-        Zspeed = 3f;
+        //SegmentSizeMaster = 2;
+        SpawnInterval = 3f;
+        TotalZombiesToSpawn = 10;
+
+
+        Zspeed = 2f;
         ZRotateSpeed = 10f;
+
+        //   numberOfPAthsPerSpawnPoint = 3;
+    }
+
+    List<Color> PathColors;
+    void InitColors()
+    {
+        PathColors = new List<Color>();
+        ColorIndex = 0;
+        PathColors.Add(Color.red);
+        PathColors.Add(Color.green);
+        PathColors.Add(Color.blue);
+        PathColors.Add(Color.yellow);
+        PathColors.Add(Color.cyan);
+        PathColors.Add(Color.magenta);
+        PathColors.Add(Color.gray);
+        PathColors.Add(Color.white);
+    }
+    int ColorIndex = 0;
+    public Color GETRand_color()
+    {
+        Color c = new Color();
+        c = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        return c;
+    }
+    public Color GetNExtColor()
+    {
+        ColorIndex++;
+        if (ColorIndex >= PathColors.Count) ColorIndex = 0;
+        return PathColors[ColorIndex];
     }
 }

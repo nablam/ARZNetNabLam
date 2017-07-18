@@ -6,46 +6,59 @@ using System.Collections.Generic;
 
 public class GridMap : MonoBehaviour {
 
+
     [Tooltip("Gridpoint prefab that is used and placed to create the gridmap.")]
     public GameObject gridPoint;
-    
+
     [Tooltip("Layers that raycasts will hit (spatial mapping & other grid points)")]
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
 
     [Tooltip("Height of gridmap in room")]
     public float gridHeight = 0.125f;
 
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject firstPoint { get; private set; }
-    public float segmentDistance;
+    float segmentDistanceGridmap;
 
-    List<GameObject> points;    // list of points on the grid map
+    [SerializeField]
+    List<GameObject> MapGridPoints_GO;    // list of points on the grid map
 
-    public bool isTestMode = false; 
-	void Start () {
-       
-	}
-	
-	public List<GameObject> GetGridMap()
+
+    void Start()
     {
-        return points;
+        segmentDistanceGridmap = GameManager.Instance.Settings.SegmentSizeMaster;
     }
 
-   
-    public GameObject GetClosestPoint(GameObject obj)
+    //used in old "pathfinder"
+    public List<GameObject> Get_ListOfMapGridPoints_GOS()
+    {
+        return MapGridPoints_GO;
+    }
+
+    public List<GameObject> Get_COPY_OF_ListOfMapGridPoints_GOS()
+    {
+        List<GameObject> copylist = new List<GameObject>();
+        foreach (GameObject go in MapGridPoints_GO)
+            copylist.Add(go);
+        return copylist;
+    }
+
+
+    public GameObject GetClosestGridPoint(GameObject obj)
     {
         Vector3 transPos = new Vector3(obj.transform.position.x, gridHeight, obj.transform.position.z);
         GameObject closestPoint = null;
         float distance = -1.0f;
 
-        foreach (GameObject p in points)
+        foreach (GameObject p in MapGridPoints_GO)
         {
             float thisDistance = Vector3.Distance(p.transform.position, transPos);
             if (distance < 0.0f)
             {
                 distance = thisDistance;
                 closestPoint = p;
-            } else
+            }
+            else
             {
                 if (thisDistance < distance)
                 {
@@ -58,55 +71,67 @@ public class GridMap : MonoBehaviour {
         return closestPoint;
     }
 
-    public void CreateGrid(bool argCubeMeshOff)
+    public void CreateGrid()
     {
-        Scan(argCubeMeshOff);
+        Scan();
     }
 
-    void Scan(bool argCubeMeshOff)
+    void Scan()
     {
-        points = new List<GameObject>();
+        MapGridPoints_GO = new List<GameObject>();
         Queue<GameObject> toVisit = new Queue<GameObject>();
 
         // create the first point and add it to the gridpoint list and the toVisit list
         Vector3 startPosition = new Vector3(transform.position.x, transform.position.y + gridHeight, transform.position.z);
+        // Vector3 startPosition = new Vector3(transform.position.x, transform.position.y , transform.position.z);
 
         GameObject point = Instantiate(gridPoint, startPosition, Quaternion.identity) as GameObject;
-
         GridPoint gp = point.GetComponent<GridPoint>();
-        segmentDistance = gp.segmentDistance;
-        if (argCubeMeshOff) gp.turnCubeMeshOff();
+        point.name = gp.GridpointName;
+        point.transform.parent = this.transform;
+
+        //segmentDistanceGridmap = gp.GetSegmentDist();
+        if (!GameManager.Instance.Settings.IsShowGridPointMesh) gp.turnCubeMeshOff();
 
         firstPoint = point;
-        points.Add(point);
+        point.name += MapGridPoints_GO.Count.ToString();
+        MapGridPoints_GO.Add(point);
 
         toVisit.Enqueue(point);
+
 
         // while there are points in the queue, tell each one to scan for new points
         while (toVisit.Count > 0)
         {
             GameObject p = toVisit.Dequeue();
-            p.GetComponent<GridPoint>().Scan(points, toVisit);
+            p.GetComponent<GridPoint>().Scan(MapGridPoints_GO, toVisit, this.transform);
         }
 
         // remove points that are too close to spatial mesh
-        //CheckBounds();
+        GM_CheckBounds();
 
-        //remove any points that are not connected to root node (firstPoint)
+        ////remove any points that are not connected to root node (firstPoint)
         //CheckConnectivity();
-
-        GameObject.Find("GameManager").GetComponent<GameManager>().GridBuilt(this);
     }
 
-    void CheckBounds()
+    public void ResetGridPointValues()
+    {
+        foreach (GameObject p in MapGridPoints_GO)
+        {
+            p.GetComponent<GridPoint>().Init_Times_Used_in_a_path();
+        }
+    }
+
+
+    void GM_CheckBounds()
     {
         // remove any points that are too close to the spatial map
         // Debug.Log("Number of points: " + points.Count);
         List<GameObject> removedPoints = new List<GameObject>();
-        foreach (GameObject p in points)
+        foreach (GameObject p in MapGridPoints_GO)
         {
             // if the point has been removed
-            if (!p.GetComponent<GridPoint>().CheckBounds())
+            if (!p.GetComponent<GridPoint>().GP_CheckBounds())
             {
                 removedPoints.Add(p);
             }
@@ -114,7 +139,7 @@ public class GridMap : MonoBehaviour {
 
         foreach (GameObject p in removedPoints)
         {
-            points.Remove(p);
+            MapGridPoints_GO.Remove(p);
         }
     }
 
@@ -130,20 +155,20 @@ public class GridMap : MonoBehaviour {
         {
             GridPoint p = toVisit.Dequeue().GetComponent<GridPoint>();
             p.Connect();
-            if (p.forwardGameObject != null && !p.forwardGameObject.GetComponent<GridPoint>().Connected)
+            if (p.forwardGameObject != null && !p.forwardGameObject.GetComponent<GridPoint>().GP_Connected)
                 toVisit.Enqueue(p.forwardGameObject);
-            if (p.backGameObject != null && !p.backGameObject.GetComponent<GridPoint>().Connected)
+            if (p.backGameObject != null && !p.backGameObject.GetComponent<GridPoint>().GP_Connected)
                 toVisit.Enqueue(p.backGameObject);
-            if (p.leftGameObject != null && !p.leftGameObject.GetComponent<GridPoint>().Connected)
+            if (p.leftGameObject != null && !p.leftGameObject.GetComponent<GridPoint>().GP_Connected)
                 toVisit.Enqueue(p.leftGameObject);
-            if (p.rightGameObject != null && !p.rightGameObject.GetComponent<GridPoint>().Connected)
+            if (p.rightGameObject != null && !p.rightGameObject.GetComponent<GridPoint>().GP_Connected)
                 toVisit.Enqueue(p.rightGameObject);
         }
 
         // check connectivity, adding points that are not connected to the list to be removed
-        foreach(GameObject p in points)
+        foreach (GameObject p in MapGridPoints_GO)
         {
-            if (!p.GetComponent<GridPoint>().CheckConnectivity())
+            if (!p.GetComponent<GridPoint>().GP_CheckConnectivity())
             {
                 removedPoints.Add(p);
             }
@@ -152,7 +177,7 @@ public class GridMap : MonoBehaviour {
         // remove points from main points list
         foreach (GameObject p in removedPoints)
         {
-            points.Remove(p);
+            MapGridPoints_GO.Remove(p);
         }
     }
 }

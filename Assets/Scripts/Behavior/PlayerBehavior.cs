@@ -27,7 +27,7 @@ public class PlayerBehavior : MonoBehaviour {
     public void SetGridPosition()
     {
         GridMap gm = GameObject.FindObjectOfType<GridMap>();
-        gridPosition = gm.GetClosestPoint(gameObject);
+        gridPosition = gm.GetClosestGridPoint(gameObject);
     }
 
     public void SetGridPosition(GameObject point)

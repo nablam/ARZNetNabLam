@@ -185,7 +185,7 @@ public class ZombieBehavior : MonoBehaviour
     {
         List<GameObject> hotspots = manager.GetHotspots();
         int randIndex = Random.Range(0, hotspots.Count);
-        hotspotPoint = manager.GetGridMap().GetClosestPoint(hotspots[randIndex]);
+        hotspotPoint = manager.GetGridMap().GetClosestGridPoint(hotspots[randIndex]);
     }
 
     void CalculateMovement()
@@ -211,7 +211,7 @@ public class ZombieBehavior : MonoBehaviour
 
 
         if (currentPoint == null)
-            currentPoint = manager.GetGridMap().GetClosestPoint(gameObject);
+            currentPoint = manager.GetGridMap().GetClosestGridPoint(gameObject);
 
         //check reaction time
         reactionTime -= Time.deltaTime;
@@ -235,7 +235,7 @@ public class ZombieBehavior : MonoBehaviour
 
             if (path.Count > 0)
             {
-                targetPoint = path.Pop().gridPoint;
+                targetPoint = path.Pop().gridPointObj;
                 targetPoint.transform.GetChild(1).gameObject.GetComponent<Renderer>().material.color = Color.red;
             }
             else
