@@ -27,15 +27,6 @@ public class EditorSpeechManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) { gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_ZoneOne()); }
         if (Input.GetKeyDown(KeyCode.R)) { gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_ZoneTwo()); }
 
-            //if (Input.GetKeyDown(KeyCode.C)) { worldManager.CreateBarrier(); }
-            //if (Input.GetKeyDown(KeyCode.V)) { worldManager.CreateScoreboard(); }
-            //if (Input.GetKeyDown(KeyCode.B)) { worldManager.CreateWeaponsRack(); }
-            //if (Input.GetKeyDown(KeyCode.N)) { worldManager.CreateInfiniteAmmoBox(); }
-            //if (Input.GetKeyDown(KeyCode.M)) { worldManager.LoadScene("MainMenu"); }
-            //if (Input.GetKeyDown(KeyCode.Comma)) { worldManager.CreateConsole(); }
-            //if (Input.GetKeyDown(KeyCode.L)) { worldManager.CreateStemBase(); }
-            //if (Input.GetKeyDown(KeyCode.LeftBracket)) { worldManager.CreateMist(); }
-            //if (Input.GetKeyDown(KeyCode.RightBracket)) { worldManager.CreateMistEnd(); }
             //if (Input.GetKeyDown(KeyCode.Delete))
             //{
             //    PersistoMatic[] objects = (PersistoMatic[])GameObject.FindObjectsOfType(typeof(PersistoMatic));
