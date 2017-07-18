@@ -110,7 +110,7 @@ public class PersistoNab : MonoBehaviour
 
     void OnRemove()
     {
-        GameEditMNGR.Instance.Removing(this);
+        DictoPlacedObjects.Instance.Removing(this);
 
         WorldAnchor anchor = trans.gameObject.GetComponent<WorldAnchor>();
         if (anchor != null)

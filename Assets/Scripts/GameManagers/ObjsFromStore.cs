@@ -1,20 +1,25 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR.WSA.Persistence;
 
-public class ObjsFromStore : MonoBehaviour {
-
+public class ObjsFromStore : MonoBehaviour
+{
     WorldAnchorStore anchorStore;
 
     // Use this for initialization
     private void Start()
     {
-      //  InitWorldAnchorStore();
+        Debug.Log("starting  OBJFRO and why not read lets read");
+       // DictoPlacedObjects.Instance.DICT_ReadAll();
+        //  InitWorldAnchorStore();
     }
 
     public void InitWorldAnchorStore()
     {
+        Debug.Log("INNIT OBJFROM WA STORE");
+        DictoPlacedObjects.Instance.DICT_ReadAll();
         //only if room is loaded .. handle this with a state machine
         WorldAnchorStore.GetAsync(AnchorStoreReady);
     }
@@ -36,13 +41,15 @@ public class ObjsFromStore : MonoBehaviour {
 
         for (int index = 0; index < ids.Length; index++)
         {
-            if (ids[index].Contains(GameEditMNGR.Instance.Settings.GetAnchorName_TestBox()))
+            if (ids[index].Contains(GameSettings.Instance.GetAnchorName_TestBox()))
             {
+                Debug.Log("we contain " + GameSettings.Instance.GetAnchorName_TestBox());
                 // get id number
-                int thisId = int.Parse(ids[index].Substring(GameEditMNGR.Instance.Settings.GetAnchorName_TestBox().Length));
+                int thisId = int.Parse(ids[index].Substring(GameSettings.Instance.GetAnchorName_TestBox().Length));
+                Debug.Log(" ID INT " + thisId);
 
                 // add id to string list to instantiate later
-                testBoxIds.Add(ids[index]);
+                 testBoxIds.Add(ids[index]);
             }
             //els if id is sosoos
             //  Debug.Log("storename is "+ anchorStore.N)
@@ -52,9 +59,23 @@ public class ObjsFromStore : MonoBehaviour {
         // load and instantiate all infinite ammo boxes
         foreach (string id in testBoxIds)
         {
-            testBoxes.Add(InstantiateObject_OnHEAP(ObjsManager.Instance.PlaceHolder_TestBox, id));
+            Transform TToGet =DictoPlacedObjects.Instance.DICT_FindTrans(id);
+            Debug.Log("getting t from gameeditor list   " + TToGet.name);
+            testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(ObjsManager.Instance.PlaceHolder_TestBox, id, TToGet.position, TToGet.rotation));
         }
 
+    }
+
+
+    GameObject InstantiateObject_toBePlacedInTheWorld(GameObject obj, string id, Vector3 position, Quaternion rotation, bool rotateOnNormals = false, bool keepUpright = false)
+    {
+        GameObject o = Instantiate(obj, position, rotation) as GameObject;
+        o.name = id;
+        PersistoNab pscript = o.GetComponent<PersistoNab>();
+        pscript.SetAnchorStoreName(id);
+        //pscript.SetRotateOnNormals(rotateOnNormals);
+        //pscript.KeepUpright(keepUpright);
+        return o;
     }
 
     GameObject InstantiateObject_OnHEAP(GameObject obj, string id)

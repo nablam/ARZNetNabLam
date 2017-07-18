@@ -5,6 +5,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSettings : MonoBehaviour {
+
+    public static GameSettings Instance = null;
+    private void Awake()
+    {
+
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            Instance = this;
+
+        }
+        else
+            Destroy(gameObject);
+    }
     //TestBox
     //public GameObject E_TestBox;                   //obj.name=TestBox_ES
     string AnchorName_TestBox = "ARZTestBox";
@@ -127,6 +141,7 @@ public class GameSettings : MonoBehaviour {
     public float SpawnInterval;
     public int TotalZombiesToSpawn;
 
+  
     void Start()
     {
         // IsTestMode = false;

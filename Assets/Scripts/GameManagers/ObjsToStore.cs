@@ -1,40 +1,42 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VR.WSA;
 using UnityEngine.VR.WSA.Persistence;
 
-public class ObjsToStore : MonoBehaviour {
-    WorldAnchorStore anchorStore;
 
-    // Use this for initialization
-    private void Start()
-    {
-        InitWorldAnchorStore();
-    }
+public class ObjsToStore : MonoBehaviour
+{
 
-    public void InitWorldAnchorStore()
-    {
-        //only if room is loaded .. handle this with a state machine
-        WorldAnchorStore.GetAsync(AnchorStoreReady);
-    }
-
-    void AnchorStoreReady(WorldAnchorStore store)
-    {
-        anchorStore = store;    
-    }
 
     public void SaveAllTheseBAdBoysToStore(List<GameObject> argObjsToStore) {
+
+        Debug.Log("in obj to store and about to save lets read lets read");
+        DictoPlacedObjects.Instance.DICT_ReadAll();
+
         foreach (GameObject go in argObjsToStore)
-        { 
-            // if no saved anchor then create one
-            WorldAnchor attachingAnchor = go.AddComponent<WorldAnchor>();
-            if (attachingAnchor.isLocated)
-            {
-                anchorStore.Save(go.name, attachingAnchor);
-            }
-        } 
+        {
+            DictoPlacedObjects.Instance.DICT_add(go.name, go.transform);
+            go.AddComponent<PersistoNab>();
+            go.GetComponent<PersistoNab>().SetAnchorStoreName(go.name);
+        }
+    
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         void LoadObjects()
@@ -70,8 +72,6 @@ public class ObjsToStore : MonoBehaviour {
 
     }
 
-
-
     //public void PlaceTestBox()
     //{
     //    Debug.Log("placing test box");
@@ -83,9 +83,6 @@ public class ObjsToStore : MonoBehaviour {
     //        // testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(TestBoxObj, id, GazeManager.Instance.HitInfo.point, Quaternion.identity));
     //    }
     //}
-
-
-
 
 
     /*
