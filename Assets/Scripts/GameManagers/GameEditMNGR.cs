@@ -8,20 +8,15 @@ public class GameEditMNGR : MonoBehaviour {
    // public static GameEditMNGR Instance = null;
     private void Awake()
     {
-    //    if (Instance == null)
-    //    {
-    //        DontDestroyOnLoad(this.gameObject);
-    //        Instance = this;
-        
-    //    }
-    //    else
-    //        Destroy(gameObject);
+        ObjsFromStoreOBJ.SetbjcksManager(ObjsMngr);
+
     }
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
     #region Dependencies   
     // public GameSettings Settings;
     public ObjsToStore ObjsToStoreOBJ;
     public ObjsFromStore ObjsFromStoreOBJ;
+    public ObjsManager ObjsMngr;
     //ObjsManager.Instance is global just for testing
     #endregion
 

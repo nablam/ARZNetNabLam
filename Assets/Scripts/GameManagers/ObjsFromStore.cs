@@ -7,7 +7,7 @@ using UnityEngine.VR.WSA.Persistence;
 public class ObjsFromStore : MonoBehaviour
 {
     WorldAnchorStore anchorStore;
-
+    ObjsManager _objsMngr;
     // Use this for initialization
     private void Start()
     {
@@ -16,6 +16,10 @@ public class ObjsFromStore : MonoBehaviour
         //  InitWorldAnchorStore();
     }
 
+    public void SetbjcksManager(ObjsManager argObjsMngr) {
+
+        _objsMngr = argObjsMngr;
+    }
     public void InitWorldAnchorStore()
     {
         Debug.Log("INNIT OBJFROM WA STORE");
@@ -29,13 +33,13 @@ public class ObjsFromStore : MonoBehaviour
         testBoxIds = new List<string>();
         testBoxes = new List<GameObject>();
         anchorStore = store;
-        LoadObjects();
+        LoadObjects(_objsMngr);
     }
 
     List<string> testBoxIds;
     List<GameObject> testBoxes;
 
-    void LoadObjects()
+    void LoadObjects(ObjsManager argObjsMngr)
     {
         string[] ids = anchorStore.GetAllIds();
 
@@ -59,9 +63,9 @@ public class ObjsFromStore : MonoBehaviour
         // load and instantiate all infinite ammo boxes
         foreach (string id in testBoxIds)
         {
-            Transform TToGet =DictoPlacedObjects.Instance.DICT_FindTrans(id);
-            Debug.Log("getting t from gameeditor list   " + TToGet.name);
-            testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(ObjsManager.Instance.PlaceHolder_TestBox, id, TToGet.position, TToGet.rotation));
+            TransData TToGet =DictoPlacedObjects.Instance.DICT_FindTrans(id);
+            Debug.Log("getting t from gameeditor list   " + TToGet.GetID());
+            testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.PlaceHolder_TestBox, id, TToGet.Getpos(), TToGet.GetRot()));
         }
 
     }

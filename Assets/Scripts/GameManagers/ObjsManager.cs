@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjsManager : Singleton<ObjsManager> {
+public class ObjsManager : MonoBehaviour {
     public GameObject TestBoxObj;
 
     public GameObject PlaceHolder_TestBox;

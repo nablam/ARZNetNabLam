@@ -1020,6 +1020,11 @@ Prefab:
       propertyPath: ObjsToStoreOBJ
       value: 
       objectReference: {fileID: 1888526895}
+    - target: {fileID: 114441187935844956, guid: f0566f378d6c41540b0ff0952ca401e9,
+        type: 2}
+      propertyPath: ObjsMngr
+      value: 
+      objectReference: {fileID: 1554042197}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0566f378d6c41540b0ff0952ca401e9, type: 2}
   m_IsPrefabParent: 0

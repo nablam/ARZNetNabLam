@@ -21,37 +21,50 @@ public class DictoPlacedObjects : MonoBehaviour {
 
 
     #region Things to init
-    Dictionary<string, Transform> DIC;
+    List<TransData> LISTOFALL;
     int _NumberOfPlacedTestBoxes;
-    List<GameObject> testBoxes;
-    List<string> testBoxIds;
+    List<GameObject> TEMPtestBoxes;
+    List<string> TEMPtestBoxIds;
 
-    List<GameObject> thesePlaedObjects;
+    List<GameObject> TEMPthesePlaedObjects;
     void InitVars()
     {
-        DIC = new Dictionary<string, Transform>();
+        LISTOFALL = new List<TransData>();
         _NumberOfPlacedTestBoxes = 0;
-        testBoxIds = new List<string>();
-        testBoxes = new List<GameObject>();
-        thesePlaedObjects = new List<GameObject>();
+        TEMPtestBoxIds = new List<string>();
+        TEMPtestBoxes = new List<GameObject>();
+        TEMPthesePlaedObjects = new List<GameObject>();
     }
     #endregion
 
 
     public void DICT_ReadAll() {
-        foreach (KeyValuePair<string, Transform> kvp in DIC) {
-            Debug.Log(" " + kvp.Key + " <-> " + kvp.Value.position.ToString() + " | name-" + kvp.Value.name);
+        foreach (TransData td in LISTOFALL) {
+            Debug.Log(" " + td.GetID() + " <-> " + td.Getpos().ToString());
         }
+    }
+    bool Alreadyin(string argid) {
+        bool found = false;
+        foreach (TransData td in LISTOFALL) {
+            if (td.GetID() == argid) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 
     public void DICT_add(string argObjID, Transform argTran) {
+
+
         Debug.Log("trying to add " + argObjID + "---" + argTran.position.ToString()+ " to DIC");
-        if (!DIC.ContainsKey(argObjID))
+        if (!Alreadyin(argObjID))
         {
-            Transform t =   Transform.
+
+            TransData td = new TransData(argTran, argObjID);
             Debug.Log("add to DIC  " + argObjID);
 
-            DIC.Add(argObjID, argTran);
+            LISTOFALL.Add(td);
         }
         else
         {
@@ -59,20 +72,24 @@ public class DictoPlacedObjects : MonoBehaviour {
         }
     }
 
-    public Transform DICT_FindTrans(string argId) {
+    public TransData DICT_FindTrans(string argId) {
         //TODO:
         //fix this shit.. what do you mean if you cant find the key juust return this transfirm?
-        Transform transtoget = this.transform;
-        bool foundTrans = false; 
-        foreach (KeyValuePair<string, Transform> kvp in DIC) {
-            if (kvp.Key == argId) {
-                foundTrans = true;
-                Debug.Log("yay we found a transform for " + kvp.Key);
-                transtoget = kvp.Value;
+        TransData transtoget = new TransData();
+
+        bool found = false;
+        foreach (TransData td in LISTOFALL)
+        {
+            if (td.GetID() == argId)
+            {
+                found = true;
+                Debug.Log("yay we found a transform for " + argId);
+                transtoget = td;
                 break;
             }
         }
-        if (foundTrans)
+     
+        if (found)
         {
             Debug.Log("we broke out of the loop cuz we found a transform ");
         }
@@ -83,7 +100,7 @@ public class DictoPlacedObjects : MonoBehaviour {
     }
 
     public void DICT_clear() {
-        DIC.Clear();
+        LISTOFALL.Clear();
     }
 
 
@@ -102,21 +119,21 @@ public class DictoPlacedObjects : MonoBehaviour {
     {
         if (pScript.GetBaseName().Contains(GameSettings.Instance.GetAnchorName_TestBox()))
         {
-            testBoxes.Remove(pScript.gameObject);
-            thesePlaedObjects.Remove(pScript.gameObject);
+            TEMPtestBoxes.Remove(pScript.gameObject);
+            TEMPthesePlaedObjects.Remove(pScript.gameObject);
         }
     }
 
     public void oksavingallplaced(ObjsToStore argObjstore) {
-        Debug.Log("objects in thingsplaced" + thesePlaedObjects.Count);
+        Debug.Log("objects in thingsplaced" + TEMPthesePlaedObjects.Count);
 
-        argObjstore.SaveAllTheseBAdBoysToStore(thesePlaedObjects);
+        argObjstore.SaveAllTheseBAdBoysToStore(TEMPthesePlaedObjects);
     }
 
     public int GetNumOfPlacedTestboxes() { return _NumberOfPlacedTestBoxes; }
     public void PlacedATestbox(GameObject go) {
         _NumberOfPlacedTestBoxes++;
-        testBoxes.Add(go);
-        thesePlaedObjects.Add(go);
+        TEMPtestBoxes.Add(go);
+        TEMPthesePlaedObjects.Add(go);
     }
 }
