@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4801093860736818}
   - component: {fileID: 114405220593859696}
+  - component: {fileID: 114977690719466654}
   m_Layer: 0
   m_Name: RealGridMap
   m_TagString: GridMap
@@ -197,3 +198,17 @@ MonoBehaviour:
     m_Bits: 2147483648
   gridHeight: 0.125
   MapGridPoints_GO: []
+--- !u!114 &114977690719466654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1775271975136232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3527f41c2058c449cc95b5189b0e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291

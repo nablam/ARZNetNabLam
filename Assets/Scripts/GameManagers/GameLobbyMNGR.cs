@@ -67,9 +67,7 @@ public class GameLobbyMNGR : MonoBehaviour {
 
         _PathMANAGER.GiveMeMyPathsForIamNetworkedSpawn(Zones[0], spawnPoints[0]);
         _PathMANAGER.GiveMeMyPathsForIamNetworkedSpawn(Zones[1], spawnPoints[0]);
-
-        _PathMANAGER.GiveMeMyPathsForIamNetworkedSpawn(Zones[0], spawnPoints[1]);
-        _PathMANAGER.GiveMeMyPathsForIamNetworkedSpawn(Zones[1], spawnPoints[1]);
+ 
     }
 
 

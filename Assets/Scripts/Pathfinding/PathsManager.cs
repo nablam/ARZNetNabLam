@@ -75,7 +75,7 @@ public class PathsManager : MonoBehaviour {
     {
         List<List<Vector3>> temp = getPAthsTOZone(ZoneGo.name, SpawnGO.name);
         foreach ( List<Vector3> templist in temp )
-        ShowPath(GameManager.Instance.Settings.GetNExtColor(), templist.ToList<Vector3>());
+        ShowPath(GameSettings.Instance.GetNExtColor(), templist.ToList<Vector3>());
     }
 
     // a NETWORK spawnpoint will invike this askingg: given my name (comming from my anchorpoint name + number) 

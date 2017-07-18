@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 33733968377207048}
   - component: {fileID: 65172311710788890}
   - component: {fileID: 23505490624502918}
+  - component: {fileID: 114461741301648878}
   m_Layer: 0
   m_Name: RealTestBox
   m_TagString: TestBox
@@ -163,3 +164,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114461741301648878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994969116713068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3527f41c2058c449cc95b5189b0e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291

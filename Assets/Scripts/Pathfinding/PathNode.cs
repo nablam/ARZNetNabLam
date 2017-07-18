@@ -45,7 +45,7 @@ public class PathNode {
         this.previousNode = previousNode;
 
 
-        if (GameManager.Instance.Settings.applyCostTweek)
+        if (GameSettings.Instance.applyCostTweek)
         {
             this.cost = argcost + (float)(GPofThisNode.TimesUsedInAfinalPath * 20);
         }

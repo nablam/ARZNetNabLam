@@ -26,7 +26,7 @@ public class GridMap : MonoBehaviour {
 
     void Start()
     {
-        segmentDistanceGridmap = GameManager.Instance.Settings.SegmentSizeMaster;
+        segmentDistanceGridmap = GameSettings.Instance.SegmentSizeMaster;
     }
 
     //used in old "pathfinder"
@@ -91,7 +91,7 @@ public class GridMap : MonoBehaviour {
         point.transform.parent = this.transform;
 
         //segmentDistanceGridmap = gp.GetSegmentDist();
-        if (!GameManager.Instance.Settings.IsShowGridPointMesh) gp.turnCubeMeshOff();
+        if (!GameSettings.Instance.IsShowGridPointMesh) gp.turnCubeMeshOff();
 
         firstPoint = point;
         point.name += MapGridPoints_GO.Count.ToString();

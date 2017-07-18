@@ -25,7 +25,7 @@ public class PathMaker : MonoBehaviour {
     void Start()
     {
 
-        segmentDistancePF = GameManager.Instance.Settings.SegmentSizeMaster;
+        segmentDistancePF = GameSettings.Instance.SegmentSizeMaster;
        
     }
 
@@ -105,7 +105,7 @@ public class PathMaker : MonoBehaviour {
         }
 
         TraversePAthSolution();
-        if(GameManager.Instance.Settings.IsLeanPath)
+        if(GameSettings.Instance.IsLeanPath)
         CleanPath();
 
         BuildPAthV3();
@@ -162,7 +162,7 @@ public class PathMaker : MonoBehaviour {
             firstDirection = newdirection;
         }
 
-        if (GameManager.Instance.Settings.IsLeanPath)
+        if (GameSettings.Instance.IsLeanPath)
             for (int i = Indextodelete.Count - 1; i >= 0; i--)
             {
                 Path_P1_GPs.RemoveAt(Indextodelete[i]);

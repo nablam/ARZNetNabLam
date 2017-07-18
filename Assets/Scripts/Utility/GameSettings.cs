@@ -166,7 +166,7 @@ public class GameSettings : MonoBehaviour {
         heiMaster = 4;
         BottomSegmentSizeMaster = 3f;
 
-        SegmentSizeMaster = 2;
+        SegmentSizeMaster = 0.4f;
         SpawnInterval = 3f;
         TotalZombiesToSpawn = 10;
 
