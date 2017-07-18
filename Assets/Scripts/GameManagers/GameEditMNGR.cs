@@ -63,8 +63,10 @@ public class GameEditMNGR : MonoBehaviour {
 
         ObjsToStore.SaveAllTheseBAdBoysToStore(thingsplaced);
     }
-    
 
+    public void OkLoadALl() {
+        ObjsToStore.InitWorldAnchorStore();
+    }
 
 
 
