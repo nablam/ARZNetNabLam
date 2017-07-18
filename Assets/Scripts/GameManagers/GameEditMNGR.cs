@@ -25,7 +25,12 @@ public class GameEditMNGR : MonoBehaviour {
     }
 
     public void OkLoadALl() {
-        ObjsFromStoreOBJ.InitWorldAnchorStore();
+        ObjsFromStoreOBJ.InitWorldAnchorStore(false);
+    }
+
+    public void OkLoadALlALLOBBY()
+    {
+        ObjsFromStoreOBJ.InitWorldAnchorStore(true);
     }
 
 

@@ -9,8 +9,10 @@ public class ObjsFromStore : MonoBehaviour
     WorldAnchorStore anchorStore;
     ObjsManager _objsMngr;
     // Use this for initialization
+    bool _lobbyMode;
     private void Start()
     {
+        _lobbyMode = false;
         Debug.Log("starting  OBJFRO and why not read lets read");
        // DictoPlacedObjects.Instance.DICT_ReadAll();
         //  InitWorldAnchorStore();
@@ -20,8 +22,9 @@ public class ObjsFromStore : MonoBehaviour
 
         _objsMngr = argObjsMngr;
     }
-    public void InitWorldAnchorStore()
+    public void InitWorldAnchorStore(bool argLobbymode)
     {
+        _lobbyMode = argLobbymode;
         Debug.Log("INNIT OBJFROM WA STORE");
         DictoPlacedObjects.Instance.DICT_ReadAll();
         //only if room is loaded .. handle this with a state machine
@@ -95,11 +98,23 @@ public class ObjsFromStore : MonoBehaviour
         }
         ////ENDForloop
         // load and instantiate all infinite ammo boxes
-        foreach (string id in AllIds)
+        if (!_lobbyMode)
         {
-            TransData TToGet =DictoPlacedObjects.Instance.DICT_FindTrans(id);
-            Debug.Log("getting t from gameeditor list   " + TToGet.GetID());
-            testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.GettheRightObjectFromAfullid(id), id, TToGet.Getpos(), TToGet.GetRot()));
+            foreach (string id in AllIds)
+            {
+                TransData TToGet = DictoPlacedObjects.Instance.DICT_FindTrans(id);
+                Debug.Log("getting t from gameeditor list   " + TToGet.GetID());
+                testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.GettheRightObjectFromAfullid(id), id, TToGet.Getpos(), TToGet.GetRot()));
+            }
+        }
+        else {
+            //TODO here get the non placeholders from Objectsmanager
+            foreach (string id in AllIds)
+            {
+                TransData TToGet = DictoPlacedObjects.Instance.DICT_FindTrans(id);
+                Debug.Log("getting t from gameeditor list   " + TToGet.GetID());
+                testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.GettheRightObjectFromAfullid(id), id, TToGet.Getpos(), TToGet.GetRot()));
+            }
         }
 
     }
