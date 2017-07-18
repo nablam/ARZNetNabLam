@@ -131,6 +131,7 @@ public class ObjsFromStore : MonoBehaviour
         return o;
     }
 
+
     GameObject InstantiateObject_OnHEAP(GameObject obj, string id)
     {
         GameObject o = Instantiate(obj) as GameObject;

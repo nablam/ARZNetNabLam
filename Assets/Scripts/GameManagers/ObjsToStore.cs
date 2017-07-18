@@ -16,7 +16,7 @@ public class ObjsToStore : MonoBehaviour
 
         foreach (GameObject go in argObjsToStore)
         {
-            DictoPlacedObjects.Instance.DICT_add(go.name, go.transform);
+           // DictoPlacedObjects.Instance.DICT_add(go.name, go.transform);
             go.AddComponent<PersistoNab>();
             go.GetComponent<PersistoNab>().SetAnchorStoreName(go.name);
         }

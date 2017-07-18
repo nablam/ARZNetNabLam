@@ -22,39 +22,39 @@ public class EditorSpeechManager : MonoBehaviour
 
     void EditorKeyboardInputs()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) { gameEditorManager.PlaceTestBox(); }
-        if (Input.GetKeyDown(KeyCode.W)) { gameEditorManager.PlaceGridMap(); }
-        if (Input.GetKeyDown(KeyCode.E)) { gameEditorManager.PlaceZone1(); }
-        if (Input.GetKeyDown(KeyCode.R)) { gameEditorManager.PlaceZone2(); }
+        if (Input.GetKeyDown(KeyCode.Q)) { gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_TestBox()); }
+        if (Input.GetKeyDown(KeyCode.W)) { gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_GridMap()); }
+        if (Input.GetKeyDown(KeyCode.E)) { gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_ZoneOne()); }
+        if (Input.GetKeyDown(KeyCode.R)) { gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_ZoneTwo()); }
 
-        //if (Input.GetKeyDown(KeyCode.C)) { worldManager.CreateBarrier(); }
-        //if (Input.GetKeyDown(KeyCode.V)) { worldManager.CreateScoreboard(); }
-        //if (Input.GetKeyDown(KeyCode.B)) { worldManager.CreateWeaponsRack(); }
-        //if (Input.GetKeyDown(KeyCode.N)) { worldManager.CreateInfiniteAmmoBox(); }
-        //if (Input.GetKeyDown(KeyCode.M)) { worldManager.LoadScene("MainMenu"); }
-        //if (Input.GetKeyDown(KeyCode.Comma)) { worldManager.CreateConsole(); }
-        //if (Input.GetKeyDown(KeyCode.L)) { worldManager.CreateStemBase(); }
-        //if (Input.GetKeyDown(KeyCode.LeftBracket)) { worldManager.CreateMist(); }
-        //if (Input.GetKeyDown(KeyCode.RightBracket)) { worldManager.CreateMistEnd(); }
-        //if (Input.GetKeyDown(KeyCode.Delete))
-        //{
-        //    PersistoMatic[] objects = (PersistoMatic[])GameObject.FindObjectsOfType(typeof(PersistoMatic));
-        //    foreach (PersistoMatic obj in objects)
-        //    {
-        //        obj.SendMessage("OnRemove");
-        //    }
-        //}
+            //if (Input.GetKeyDown(KeyCode.C)) { worldManager.CreateBarrier(); }
+            //if (Input.GetKeyDown(KeyCode.V)) { worldManager.CreateScoreboard(); }
+            //if (Input.GetKeyDown(KeyCode.B)) { worldManager.CreateWeaponsRack(); }
+            //if (Input.GetKeyDown(KeyCode.N)) { worldManager.CreateInfiniteAmmoBox(); }
+            //if (Input.GetKeyDown(KeyCode.M)) { worldManager.LoadScene("MainMenu"); }
+            //if (Input.GetKeyDown(KeyCode.Comma)) { worldManager.CreateConsole(); }
+            //if (Input.GetKeyDown(KeyCode.L)) { worldManager.CreateStemBase(); }
+            //if (Input.GetKeyDown(KeyCode.LeftBracket)) { worldManager.CreateMist(); }
+            //if (Input.GetKeyDown(KeyCode.RightBracket)) { worldManager.CreateMistEnd(); }
+            //if (Input.GetKeyDown(KeyCode.Delete))
+            //{
+            //    PersistoMatic[] objects = (PersistoMatic[])GameObject.FindObjectsOfType(typeof(PersistoMatic));
+            //    foreach (PersistoMatic obj in objects)
+            //    {
+            //        obj.SendMessage("OnRemove");
+            //    }
+            //}
 
-        //if (Input.GetKeyDown(KeyCode.K)) { worldManager.CreateHotspot(); }
+            //if (Input.GetKeyDown(KeyCode.K)) { worldManager.CreateHotspot(); }
 
-        //if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    GameObject focusObject = GazeManager.Instance.HitObject;
-        //    if (focusObject != null) { focusObject.SendMessage("OnRemove"); }
-        //}
+            //if (Input.GetKeyDown(KeyCode.R))
+            //{
+            //    GameObject focusObject = GazeManager.Instance.HitObject;
+            //    if (focusObject != null) { focusObject.SendMessage("OnRemove"); }
+            //}
 
 
-    }
+        }
 
     void Update()
     {
@@ -64,40 +64,27 @@ public class EditorSpeechManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
 
 
-
-
-        // Call the OnReset method on every gameobject.
-        //keywords.Add("Reset world", () =>
-        //{
-        //    PersistoMatic[] objects = (PersistoMatic[])GameObject.FindObjectsOfType(typeof(PersistoMatic));
-        //    foreach (PersistoMatic obj in objects)
-        //    {
-        //        obj.SendMessage("OnRemove");
-        //    }  
-        //});
-
-
-
-        keywords.Add("Place test box", () =>
+        keywords.Add("Test box", () =>
         {
-            gameEditorManager.PlaceTestBox();
+            gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_TestBox());
         });
 
-        keywords.Add("Place grid map", () =>
+        keywords.Add("Grid map", () =>
         {
-            gameEditorManager.PlaceGridMap();
+            gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_GridMap());
         });
 
-        keywords.Add("Place zone one", () =>
+        keywords.Add("Zone one", () =>
         {
-            gameEditorManager.PlaceZone1();
+            gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_ZoneOne());
         });
 
-        keywords.Add("Place zone two", () =>
+        keywords.Add("Zone two", () =>
         {
-            gameEditorManager.PlaceZone2();
+            gameEditorManager.PlaceEditorObject(GameSettings.Instance.GetAnchorName_ZoneTwo());
         });
 
         //keywords.Add("Remove", () =>

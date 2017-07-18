@@ -33,6 +33,20 @@ public class GameEditMNGR : MonoBehaviour {
         ObjsFromStoreOBJ.InitWorldAnchorStore(true);
     }
 
+    public void PlaceEditorObject(string argObjName) {
+
+        if (GazeManager.Instance.isActiveAndEnabled)
+        {
+            GameObject go = Instantiate(ObjsMngr.GettheRightObjectFromAfullid(argObjName), GazeManager.Instance.HitInfo.point, Quaternion.identity) as GameObject;
+
+            string thename = argObjName + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
+            go.name = thename;
+
+            DictoPlacedObjects.Instance.AddPlacedGOToListOfPlacedGos(go);
+            Debug.Log("placing " + thename);
+        }
+    }
+
 
 
 
@@ -49,7 +63,7 @@ public class GameEditMNGR : MonoBehaviour {
             string thename = GameSettings.Instance.GetAnchorName_TestBox() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
             go.name = thename;
 
-            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            DictoPlacedObjects.Instance.AddPlacedGOToListOfPlacedGos(go);
             Debug.Log("placing " + thename);
         }
     }
@@ -67,7 +81,7 @@ public class GameEditMNGR : MonoBehaviour {
             string thename = GameSettings.Instance.GetAnchorName_GridMap() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
             go.name = thename;
 
-            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            DictoPlacedObjects.Instance.AddPlacedGOToListOfPlacedGos(go);
             Debug.Log("placing " + thename);
         }
     }
@@ -84,7 +98,7 @@ public class GameEditMNGR : MonoBehaviour {
             string thename = GameSettings.Instance.GetAnchorName_ZoneOne() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
             go.name = thename;
 
-            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            DictoPlacedObjects.Instance.AddPlacedGOToListOfPlacedGos(go);
             Debug.Log("placing " + thename);
         }
     }
@@ -100,7 +114,7 @@ public class GameEditMNGR : MonoBehaviour {
             string thename = GameSettings.Instance.GetAnchorName_ZoneTwo() + DictoPlacedObjects.Instance.GetNumOfPlacedTestboxes().ToString();
             go.name = thename;
 
-            DictoPlacedObjects.Instance.PlacedATestbox(go);
+            DictoPlacedObjects.Instance.AddPlacedGOToListOfPlacedGos(go);
             Debug.Log("placing " + thename);
         }
     }

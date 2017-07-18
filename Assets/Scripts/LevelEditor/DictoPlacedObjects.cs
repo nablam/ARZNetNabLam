@@ -122,13 +122,20 @@ public class DictoPlacedObjects : MonoBehaviour {
     }
 
     public void oksavingallplaced(ObjsToStore argObjstore) {
-        Debug.Log("objects in thingsplaced" + TEMPthesePlaedObjects.Count);
-
+        // Debug.Log("objects in thingsplaced" + TEMPthesePlaedObjects.Count);
+        AddToListofTransData();
         argObjstore.SaveAllTheseBAdBoysToStore(TEMPthesePlaedObjects);
     }
 
+    void AddToListofTransData() {
+        foreach (GameObject go in TEMPthesePlaedObjects)
+        {
+           DICT_add(go.name, go.transform);      
+        }
+    }
+
     public int GetNumOfPlacedTestboxes() { return _NumberOfDiversThingsInWolrd; }
-    public void PlacedATestbox(GameObject go) {
+    public void AddPlacedGOToListOfPlacedGos(GameObject go) {
         _NumberOfDiversThingsInWolrd++;
         TEMPthesePlaedObjects.Add(go);
     }
