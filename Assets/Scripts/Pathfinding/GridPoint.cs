@@ -40,7 +40,7 @@ public class GridPoint : MonoBehaviour {
 
     public bool wasvisited { get; set; }
 
-    public GameSettings Settigs;
+    //public GameSettings Settigs;
     // public bool thisGridpointWasUsedinPath1;
     public int TimesUsedInAfinalPath;
     public void Increment_TimesUsedInAfinalPath()
@@ -69,8 +69,8 @@ public class GridPoint : MonoBehaviour {
     }
     void Awake()
     {
-        segmentDistanceGP = Settigs.SegmentSizeMaster;
-        bottomsegmetdistanceGP = Settigs.BottomSegmentSizeMaster;
+        segmentDistanceGP = GameSettings.Instance.SegmentSizeMaster;
+        bottomsegmetdistanceGP = GameSettings.Instance.BottomSegmentSizeMaster;
     }
 
     void Start()
