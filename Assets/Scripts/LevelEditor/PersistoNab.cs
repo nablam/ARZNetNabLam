@@ -29,7 +29,7 @@ public class PersistoNab : MonoBehaviour
     {
         Debug.Log("setting name of persisionab to " + argIDpassed);
         anchorNameInStore = argIDpassed;
-         WorldAnchorStore.GetAsync(AnchorStoreReady);
+        WorldAnchorStore.GetAsync(AnchorStoreReady);
     }
  
 
@@ -110,7 +110,7 @@ public class PersistoNab : MonoBehaviour
 
     void OnRemove()
     {
-        GameObject.Find("GameEDITORManagerObj").GetComponent<GameEditMNGR>().Removing(this);
+        GameEditMNGR.Instance.Removing(this);
 
         WorldAnchor anchor = trans.gameObject.GetComponent<WorldAnchor>();
         if (anchor != null)
