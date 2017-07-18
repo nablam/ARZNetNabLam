@@ -24,6 +24,10 @@ TagManager:
   - Fire
   - PlayerGun
   - UIObject
+  - GridMap
+  - ZoneOne
+  - ZoneTwo
+  - TestBox
   layers:
   - Default
   - TransparentFX

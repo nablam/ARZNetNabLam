@@ -113,7 +113,7 @@ public class ObjsFromStore : MonoBehaviour
             {
                 TransData TToGet = DictoPlacedObjects.Instance.DICT_FindTrans(id);
                 Debug.Log("getting t from gameeditor list   " + TToGet.GetID());
-                testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.GettheRightObjectFromAfullid(id), id, TToGet.Getpos(), TToGet.GetRot()));
+                testBoxes.Add(InstantiateObject_toBePlacedInTheWorld(argObjsMngr.GettheRightREALObject_For_LOBBY(id), id, TToGet.Getpos(), TToGet.GetRot()));
             }
         }
 
