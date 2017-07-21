@@ -59,7 +59,11 @@ namespace HoloToolkit.Examples.SharingWithUNET
 
         private void Start()
         {
-            // Initializes NetworkDiscovery.
+          
+        }
+
+       public void DoInitPlease()
+        {  // Initializes NetworkDiscovery.
             Initialize();
 
             if (!CheckComponents())

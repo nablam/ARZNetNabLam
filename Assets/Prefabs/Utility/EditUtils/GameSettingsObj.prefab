@@ -53,14 +53,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   latMaster: 0
   heiMaster: 0
-  SegmentSizeMaster: 2
+  SegmentSizeMaster: 1
   BottomSegmentSizeMaster: 3
-  IsShowGridPointMesh: 0
-  IsShowNodeTag: 0
-  Zspeed: 0
-  ZRotateSpeed: 0
-  SpawnInterval: 0
-  TotalZombiesToSpawn: 0
-  applyCostTweek: 0
+  IsShowGridPointMesh: 1
+  IsShowNodeTag: 1
+  Zspeed: 1
+  ZRotateSpeed: 12
+  SpawnInterval: 5
+  TotalZombiesToSpawn: 12
+  applyCostTweek: 1
   IsLeanPath: 0
-  numberOfPAthsPerSpawnPoint: 0
+  numberOfPAthsPerSpawnPoint: 1

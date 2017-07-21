@@ -60,4 +60,13 @@ MonoBehaviour:
     type: 2}
   PlaceHolder_ZoneTwo: {fileID: 1488357766823136, guid: 35e2859d2d6d72045abd1def9095e696,
     type: 2}
+  RealObj_TestBox: {fileID: 1994969116713068, guid: a77888f71a7bff249a203b216bb70755,
+    type: 2}
+  RealObj_GridMap: {fileID: 1775271975136232, guid: 7fb41147e1ebf1e4cbb29dd4dc3a696a,
+    type: 2}
+  RealObj_ZoneOne: {fileID: 1425075179066202, guid: 84d33b8e7d8a52f488ada8673eb69e98,
+    type: 2}
+  RealObj_ZoneTwo: {fileID: 1798665451797954, guid: ee2e2386d44fb0a4dbb715971e3f0590,
+    type: 2}
   PlaceHolders: []
+  RealObjs: []

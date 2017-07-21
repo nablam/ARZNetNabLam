@@ -40,9 +40,11 @@ GameObject:
   - component: {fileID: 65172311710788890}
   - component: {fileID: 23505490624502918}
   - component: {fileID: 114461741301648878}
+  - component: {fileID: 114325864052092570}
+  - component: {fileID: 114989311132015214}
   m_Layer: 0
   m_Name: RealTestBox
-  m_TagString: TestBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +166,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114325864052092570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994969116713068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 167
+    i1: 120
+    i2: 136
+    i3: 247
+    i4: 26
+    i5: 123
+    i6: 255
+    i7: 36
+    i8: 154
+    i9: 32
+    i10: 59
+    i11: 33
+    i12: 107
+    i13: 183
+    i14: 7
+    i15: 85
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114461741301648878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,3 +212,15 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967291
+--- !u!114 &114989311132015214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994969116713068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e160f116e76ca428f311883c3288ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Z: {fileID: 1867939041253326, guid: f52d12124580c2147b3415fdd99d0a73, type: 2}

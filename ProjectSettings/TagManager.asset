@@ -28,6 +28,7 @@ TagManager:
   - ZoneOne
   - ZoneTwo
   - TestBox
+  - ZombieTag
   layers:
   - Default
   - TransparentFX
