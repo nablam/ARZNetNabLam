@@ -1549,7 +1549,7 @@ GameObject:
   - component: {fileID: 1579424321}
   - component: {fileID: 1579424320}
   m_Layer: 5
-  m_Name: BtnSavePaths
+  m_Name: BtnToggleChildren
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2113,7 +2113,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SavePaths ? notyet
+  m_Text: Toggle Child
 --- !u!222 &1970849132
 CanvasRenderer:
   m_ObjectHideFlags: 0

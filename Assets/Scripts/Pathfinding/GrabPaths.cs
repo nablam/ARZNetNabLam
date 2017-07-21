@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.SharingWithUNET;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -29,6 +30,13 @@ public class GrabPaths : NetworkBehaviour {
     }
     void PlaceYourselfOnSpawTagWithSameName() {
         this.transform.position = LocateSpawTagWithSameName().position;
+        this.transform.parent = SharedCollection.Instance.gameObject.transform;
+        // server has spawn parented to sharedcollection
+        //scenario 1: client knows where to plcae it /parented
+        //scenario2 : no parenting,
+        // server side =>just grab relative pos 
+        // serve side => syncvar
+        // client updates from revers transform point
     }
 
     public override void OnStartServer()
