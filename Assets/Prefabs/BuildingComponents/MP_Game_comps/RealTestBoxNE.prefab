@@ -40,9 +40,12 @@ GameObject:
   - component: {fileID: 65172311710788890}
   - component: {fileID: 23505490624502918}
   - component: {fileID: 114461741301648878}
+  - component: {fileID: 114325864052092570}
+  - component: {fileID: 114989311132015214}
+  - component: {fileID: 114043228973992994}
   m_Layer: 0
-  m_Name: RealTestBox
-  m_TagString: Respawn
+  m_Name: RealTestBoxNE
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +167,59 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114043228973992994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994969116713068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114325864052092570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994969116713068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 151
+    i1: 217
+    i2: 174
+    i3: 67
+    i4: 42
+    i5: 75
+    i6: 26
+    i7: 100
+    i8: 74
+    i9: 110
+    i10: 30
+    i11: 13
+    i12: 230
+    i13: 148
+    i14: 53
+    i15: 64
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114461741301648878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,3 +234,15 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967291
+--- !u!114 &114989311132015214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1994969116713068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e160f116e76ca428f311883c3288ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Z: {fileID: 1867939041253326, guid: f52d12124580c2147b3415fdd99d0a73, type: 2}

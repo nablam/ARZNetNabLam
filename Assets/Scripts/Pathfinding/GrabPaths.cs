@@ -22,7 +22,7 @@ public class GrabPaths : NetworkBehaviour {
     string GetyourName() { return  gameObject.name.Substring(0, gameObject.name.Length - 3);    }
     Transform LocateSpawTagWithSameName()
     {
-        string myname= GetyourName();
+        string myname = "Respawn"; //GetyourName();
 
         GameObject spawnTagWithSameNameAsMine= GameObject.Find(myname);
         _MycorrespondingSpawnTagObject = spawnTagWithSameNameAsMine;
@@ -94,9 +94,11 @@ public class GrabPaths : NetworkBehaviour {
 
     public void SpawnZonNetwork_OneFirstPath()
     {
+        //if server 
 
         GameObject go = Instantiate(Z, transform.position, Quaternion.identity);
         go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
+
         NetworkServer.Spawn(go);
     }
 
