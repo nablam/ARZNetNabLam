@@ -50,7 +50,7 @@ public class GameLobbyMNGR : MonoBehaviour {
 
         GameObject goz1 = GameObject.FindGameObjectWithTag("ZoneOne");
         GameObject goz2 = GameObject.FindGameObjectWithTag("ZoneTwo");
-        GameObject gotx = GameObject.FindGameObjectWithTag("TestBox");
+        GameObject gotx = GameObject.FindGameObjectWithTag("Respawn");
 
         spawnPoints.Add(gotx);
         Zones.Add(goz1); Zones.Add(goz2);

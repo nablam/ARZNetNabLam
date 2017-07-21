@@ -51,11 +51,11 @@ public class Console3D : Singleton<Console3D>
 
 
     int _curLineNumDEBUG = -1;
-    public int _MaxLinesDEBUG = 22;
+    public int _MaxLinesDEBUG = 36;
     Queue<string> _MyDebugQueue = new Queue<string>();
 
     int _curLineNumStackTrace = -1;
-    public int _MaxLinesStackTrace = 22;
+    public int _MaxLinesStackTrace = 5;
     Queue<string> _MyStackTraceQueue = new Queue<string>();
 
 
@@ -203,6 +203,7 @@ public class Console3D : Singleton<Console3D>
 
 
 }
+
 
 
 
