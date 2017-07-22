@@ -74,8 +74,10 @@ public class PathsManager : MonoBehaviour {
     public void GiveMeMyPathsForIamNetworkedSpawn(GameObject ZoneGo, GameObject SpawnGO)
     {
         List<List<Vector3>> temp = getPAthsTOZone(ZoneGo.name, SpawnGO.name);
-        foreach ( List<Vector3> templist in temp )
-        ShowPath(GameSettings.Instance.GetNExtColor(), templist.ToList<Vector3>());
+        foreach (List<Vector3> templist in temp)
+        {
+            ShowPath(GameSettings.Instance.GetNExtColor(), templist.ToList<Vector3>());
+        }
     }
 
     // a NETWORK spawnpoint will invike this askingg: given my name (comming from my anchorpoint name + number) 
@@ -117,7 +119,8 @@ public class PathsManager : MonoBehaviour {
 
         for (int n = 0; n < argPathV3.Count; n++)
         {
-            GameObject go_nP1 = Instantiate(PF1node, argPathV3[n], Quaternion.identity) as GameObject;
+            float newheight = n     / 10 ; //WOWOWOO NO T THIS
+            GameObject go_nP1 = Instantiate(PF1node, argPathV3[n]+ new Vector3(0, newheight, 0), Quaternion.identity) as GameObject;
             go_nP1.GetComponentInChildren<TextMesh>().text = "-" + n.ToString() + "-";
             go_nP1.name = "p1n" + n.ToString();
             go_nP1.transform.parent = this.transform;

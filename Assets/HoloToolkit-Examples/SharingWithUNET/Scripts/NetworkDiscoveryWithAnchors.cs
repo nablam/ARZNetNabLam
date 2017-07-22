@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -57,15 +58,52 @@ namespace HoloToolkit.Examples.SharingWithUNET
             return true;
         }
 
-        private void Start()
+        private void Awake()
         {
-          
+            
         }
 
-       public void DoInitPlease()
+        bool hasbeeninited=false;
+        public void DOallInitsandMaybecreate() {
+            if (!hasbeeninited)
+            {
+                Initialize();
+                if (!CheckComponents())
+                {
+                    Debug.Log("Invalid configuration detected. Network Discovery disabled.");
+                    Destroy(this);
+                    return;
+                }
+
+                broadcastInterval = BroadcastInterval;
+
+                // Start listening for broadcasts.
+                StartAsClient();
+
+                // But if we don't get a broadcast after some time we'll start broadcasting.
+                // We randomize how long we wait so that we reduce the chances that everyone joins at
+                // once and decides that they are the server.  
+                // An alternative would be to create UI for managing who hosts.
+                float InvokeWaitTime = 3 * BroadcastInterval + Random.value * 4 * BroadcastInterval;
+                Invoke("MaybeInitAsServer", InvokeWaitTime * 0.001f);
+                hasbeeninited = true;
+            }
+            else
+                Debug.Log("fuckoff dude . we cliked it already ");
+  
+
+
+
+        }
+        public void DoInitPlease()
         {  // Initializes NetworkDiscovery.
             Initialize();
 
+           
+        }
+
+        public void DoInit2()
+        {
             if (!CheckComponents())
             {
                 Debug.Log("Invalid configuration detected. Network Discovery disabled.");
@@ -82,7 +120,7 @@ namespace HoloToolkit.Examples.SharingWithUNET
             // We randomize how long we wait so that we reduce the chances that everyone joins at
             // once and decides that they are the server.  
             // An alternative would be to create UI for managing who hosts.
-            float InvokeWaitTime = 3 * BroadcastInterval + Random.value * 3 * BroadcastInterval;
+            float InvokeWaitTime = 3 * BroadcastInterval + Random.value * 4 * BroadcastInterval;
             Invoke("MaybeInitAsServer", InvokeWaitTime * 0.001f);
         }
 
@@ -99,8 +137,34 @@ namespace HoloToolkit.Examples.SharingWithUNET
             }
 
             Debug.Log("Acting as host");
+
+            StartCoroutine(InitAsServer());
+            // StopBroadcast will also 'StopListening'
+            // StopBroadcast();
+
+            //// Starting as a 'host' makes us both a client and a server.
+            //// There are nuances to this in UNet's sync system, so do make sure
+            //// to test behavior of your networked objects on both a host and a client 
+            //// device.
+            //NetworkManager.singleton.StartHost();
+
+            //// Start broadcasting for other clients.
+            //StartAsServer();
+
+ 
+         //   Debug.LogWarning("This script will need modification to work in the Unity Editor");
+ 
+        }
+
+        private IEnumerator InitAsServer()
+        {
+            Debug.Log("Acting as host");
             // StopBroadcast will also 'StopListening'
             StopBroadcast();
+
+            // Work-around when building to the HoloLens with "Compile with .NET Native tool chain".
+            // Need a frame of delay after StopBroadcast() otherwise clients won't connect.
+            yield return null;
 
             // Starting as a 'host' makes us both a client and a server.
             // There are nuances to this in UNet's sync system, so do make sure
@@ -108,16 +172,23 @@ namespace HoloToolkit.Examples.SharingWithUNET
             // device.
             NetworkManager.singleton.StartHost();
 
+            // Work-around when building to the HoloLens with "Compile with .NET Native tool chain".
+            // Need a frame of delay between StartHost() and StartAsServer() otherwise clients won't connect.
+            yield return null;
+
             // Start broadcasting for other clients.
             StartAsServer();
-
+            
+            
 #if !UNITY_EDITOR
             // Start creating an anchor.
-            UNetAnchorManager.Instance.CreateAnchor();
+           UNetAnchorManager.Instance.CreateAnchor();
 #else
-        Debug.LogWarning("This script will need modification to work in the Unity Editor");
+            Debug.LogWarning("This script will need modification to work in the Unity Editor");
 #endif
         }
+
+
 
         /// <summary>
         /// Called by UnityEngine when a broadcast is received. 

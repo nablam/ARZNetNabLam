@@ -173,7 +173,8 @@ namespace HoloToolkit.Examples.SharingWithUNET
         /// </summary>
         public void CreateAnchor()
         {
-#if UNITY_EDITOR || UNITY_WSA
+            Debug.Log("creating anc");
+
             objectToAnchor = SharedCollection.Instance.gameObject;
             WorldAnchorTransferBatch watb = new WorldAnchorTransferBatch();
             WorldAnchor worldAnchor = objectToAnchor.GetComponent<WorldAnchor>();
@@ -186,7 +187,9 @@ namespace HoloToolkit.Examples.SharingWithUNET
             Debug.Log("exporting " + exportingAnchorName);
             watb.AddWorldAnchor(exportingAnchorName, worldAnchor);
             WorldAnchorTransferBatch.ExportAsync(watb, WriteBuffer, ExportComplete);
-#endif
+ 
+
+            //TODO SAVE MAYBE
         }
 
         /// <summary>
@@ -204,7 +207,7 @@ namespace HoloToolkit.Examples.SharingWithUNET
         /// <returns>True if it attached, false if it could not attach</returns>
         private bool AttachToCachedAnchor(string AnchorName)
         {
-#if UNITY_EDITOR || UNITY_WSA
+ 
             WorldAnchorStore anchorStore = WorldAnchorManager.Instance.AnchorStore;
             Debug.Log("Looking for " + AnchorName);
             string[] ids = anchorStore.GetAllIds();
@@ -218,7 +221,7 @@ namespace HoloToolkit.Examples.SharingWithUNET
                     return true;
                 }
             }
-#endif
+ 
             // Didn't find the anchor.
             return false;
         }

@@ -19,10 +19,19 @@ public class GameLobbyMNGR : MonoBehaviour {
     #endregion
 
 
-
+    bool lobbyloaded = false;
     public void OkLoadALlALLOBBY()
     {
-        ObjsFromStoreOBJ.InitWorldAnchorStore(true);
+        if (!lobbyloaded)
+        {
+            ObjsFromStoreOBJ.InitWorldAnchorStore(true);
+            lobbyloaded = true;
+        }
+        else
+            Debug.Log("Fuckoff ,,the btn was already pressed");
+        
+      
+
     }
 
 
@@ -43,24 +52,34 @@ public class GameLobbyMNGR : MonoBehaviour {
 
     PathNode _head;
 
+
+    bool gridinited = false;
    public void InitGridMap()
     {
-        GameObject go = GameObject.FindGameObjectWithTag("GridMap");
-        GridMapObj = go.GetComponent<GridMap>();
+        if (!gridinited) {
 
-        GameObject goz1 = GameObject.FindGameObjectWithTag("ZoneOne");
-        GameObject goz2 = GameObject.FindGameObjectWithTag("ZoneTwo");
-        GameObject gotx = GameObject.FindGameObjectWithTag("Respawn");
+            GameObject go = GameObject.FindGameObjectWithTag("GridMap");
+            GridMapObj = go.GetComponent<GridMap>();
 
-        spawnPoints.Add(gotx);
-        Zones.Add(goz1); Zones.Add(goz2);
+            GameObject goz1 = GameObject.FindGameObjectWithTag("ZoneOne");
+            GameObject goz2 = GameObject.FindGameObjectWithTag("ZoneTwo");
+            GameObject gotx = GameObject.FindGameObjectWithTag("Respawn");
 
-        map = GridMapObj;
-        map.CreateGrid();
+            spawnPoints.Add(gotx);
+            Zones.Add(goz1); Zones.Add(goz2);
 
-        _PathMANAGER.Init_SP_DST(spawnPoints, Zones);
-        _PathMANAGER.BuildDataModel(map, GameSettings.Instance.numberOfPAthsPerSpawnPoint);
-        CLIIIIK();
+            map = GridMapObj;
+            map.CreateGrid();
+
+            _PathMANAGER.Init_SP_DST(spawnPoints, Zones);
+            _PathMANAGER.BuildDataModel(map, GameSettings.Instance.numberOfPAthsPerSpawnPoint);
+            CLIIIIK();
+            gridinited = true;
+        }
+        else
+            Debug.Log("Fuckoff ,,the btn was already pressed");
+
+
     }
 
     public void CLIIIIK() {

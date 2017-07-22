@@ -53,9 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   latMaster: 0
   heiMaster: 0
-  SegmentSizeMaster: 1
+  SegmentSizeMaster: 0.5
   BottomSegmentSizeMaster: 3
-  IsShowGridPointMesh: 1
+  IsShowGridPointMesh: 0
   IsShowNodeTag: 1
   Zspeed: 1
   ZRotateSpeed: 12

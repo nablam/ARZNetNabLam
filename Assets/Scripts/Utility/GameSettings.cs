@@ -166,7 +166,7 @@ public class GameSettings : MonoBehaviour {
         heiMaster = 4;
         BottomSegmentSizeMaster = 3f;
 
-        SegmentSizeMaster = 0.2f;
+        SegmentSizeMaster = 0.1f;
         SpawnInterval = 3f;
         TotalZombiesToSpawn = 10;
 
@@ -174,7 +174,7 @@ public class GameSettings : MonoBehaviour {
         Zspeed = 2f;
         ZRotateSpeed = 10f;
 
-       numberOfPAthsPerSpawnPoint = 1;
+       numberOfPAthsPerSpawnPoint = 2;
     }
 
     List<Color> PathColors;
