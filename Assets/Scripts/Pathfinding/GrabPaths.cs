@@ -66,7 +66,10 @@ public class GrabPaths : NetworkBehaviour {
 
     void YoIHEardTereWasAnAnchoreExported(Vector3 argWApos)
     {
-        PlaceYourselfOnSpawTagWithSameName();
+       // PlaceYourselfOnSpawTagWithSameName();
+
+
+
 
 
         DecideWhoToAttack();
