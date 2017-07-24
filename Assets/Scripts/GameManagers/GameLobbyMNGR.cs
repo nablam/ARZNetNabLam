@@ -9,6 +9,8 @@ public class GameLobbyMNGR : MonoBehaviour {
     {
         ObjsFromStoreOBJ.SetbjcksManager(ObjsMngr);
     }
+
+
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
     #region Dependencies   
     public ObjsFromStore ObjsFromStoreOBJ;
@@ -17,6 +19,7 @@ public class GameLobbyMNGR : MonoBehaviour {
     public PathsManager _PathMANAGER;
     GridMap GridMapObj;
     #endregion
+
 
 
     bool lobbyloaded = false;
@@ -88,6 +91,6 @@ public class GameLobbyMNGR : MonoBehaviour {
         _PathMANAGER.GiveMeMyPathsForIamNetworkedSpawn(Zones[1], spawnPoints[0]);
  
     }
-
+    
 
 }

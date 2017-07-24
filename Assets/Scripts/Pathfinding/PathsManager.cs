@@ -68,15 +68,17 @@ public class PathsManager : MonoBehaviour {
  
     }
 
-
+    int curpath_forHeight = 1;
     // a NETWORK spawnpoint will invike this askingg: given my name (comming from my anchorpoint name + number) 
     // what paths are available for zone named Zone1
     public void GiveMeMyPathsForIamNetworkedSpawn(GameObject ZoneGo, GameObject SpawnGO)
     {
+        curpath_forHeight++;
+        pathHeight = (float)curpath_forHeight /20;
         List<List<Vector3>> temp = getPAthsTOZone(ZoneGo.name, SpawnGO.name);
         foreach (List<Vector3> templist in temp)
         {
-            ShowPath(GameSettings.Instance.GetNExtColor(), templist.ToList<Vector3>());
+            ShowPath(GameSettings.Instance.GetNExtColor(), templist.ToList<Vector3>(), pathHeight);
         }
     }
 
@@ -112,15 +114,13 @@ public class PathsManager : MonoBehaviour {
         return temp;
     }
 
-
-    void ShowPath(Color argColor, List<Vector3> argPathV3)
+    float pathHeight = 0f;
+    void ShowPath(Color argColor, List<Vector3> argPathV3,  float argHeight)
     {
-
-
         for (int n = 0; n < argPathV3.Count; n++)
         {
-            float newheight = n     / 10 ; //WOWOWOO NO T THIS
-            GameObject go_nP1 = Instantiate(PF1node, argPathV3[n]+ new Vector3(0, newheight, 0), Quaternion.identity) as GameObject;
+            //WOWOWOO NO T THIS
+            GameObject go_nP1 = Instantiate(PF1node, argPathV3[n]+ new Vector3(0, argHeight, 0), Quaternion.identity) as GameObject;
             go_nP1.GetComponentInChildren<TextMesh>().text = "-" + n.ToString() + "-";
             go_nP1.name = "p1n" + n.ToString();
             go_nP1.transform.parent = this.transform;

@@ -305,6 +305,7 @@ namespace HoloToolkit.Examples.SharingWithUNET
                 Debug.Log("Anchor ready");
                 GenericNetworkTransmitter.Instance.ConfigureAsServer();
                 AnchorEstablished = true;
+                DictoPlacedObjects.Instance.Call_whatIDoWhenIHEarIt(objectToAnchor.transform.position);
             }
             else
             {

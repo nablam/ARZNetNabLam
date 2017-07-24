@@ -7,8 +7,7 @@ public class DictoPlacedObjects : MonoBehaviour {
     private void Awake()
     { 
         if (Instance == null)
-        {
-            
+        {           
             InitVars();
             DontDestroyOnLoad(this.gameObject);
             Instance = this;
@@ -18,6 +17,11 @@ public class DictoPlacedObjects : MonoBehaviour {
             Destroy(gameObject);
     }
 
+
+
+    public delegate void HandleExportDone(Vector3 argWApos);
+    public event HandleExportDone _whatIdoWhenIHhrarExpDone;
+    public void Call_whatIDoWhenIHEarIt(Vector3 argWApos) { if (_whatIdoWhenIHhrarExpDone != null) _whatIdoWhenIHhrarExpDone(argWApos); }
 
 
     #region Things to init

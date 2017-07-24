@@ -14,9 +14,8 @@ public class FollowPath : MonoBehaviour {
     public float health = 1f;
 
     void Awake() {
-        GameSettings settings = GameManager.Instance.Settings;
-        ZombieMoveSpeed = settings.Zspeed;
-        ZombieRotatSpeed = settings.ZRotateSpeed;
+        ZombieMoveSpeed = GameSettings.Instance.Zspeed;
+        ZombieRotatSpeed = GameSettings.Instance.ZRotateSpeed;
     }
     //this is set by Spawner. It is the one to decide what player will be attacked by this zombie that it spawned
     public void FollowThisPath(List<Vector3> argPATH) {

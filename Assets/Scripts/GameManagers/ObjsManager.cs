@@ -16,6 +16,9 @@ public class ObjsManager : MonoBehaviour {
     public GameObject RealObj_ZoneOne;
     public GameObject RealObj_ZoneTwo;
 
+
+    public GameObject testBoxNE;
+
     public List<GameObject> PlaceHolders;
 
     public List<GameObject> RealObjs;
