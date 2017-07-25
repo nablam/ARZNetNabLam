@@ -135,7 +135,6 @@ public class GameSettings : MonoBehaviour {
 
 
 
-
     public int latMaster;
     public int heiMaster;
     //segment size is used in gridpoint, gridmap and pathfinder
@@ -166,9 +165,9 @@ public class GameSettings : MonoBehaviour {
         heiMaster = 4;
         BottomSegmentSizeMaster = 3f;
 
-        SegmentSizeMaster = 0.3f;
+        SegmentSizeMaster = 0.5f;
         SpawnInterval = 10f;
-        TotalZombiesToSpawn = 1;
+        TotalZombiesToSpawn = 10;
 
 
         Zspeed = 0.1f;

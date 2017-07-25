@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.SharingWithUNET;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -9,7 +10,7 @@ public class FollowPath : NetworkBehaviour
  
     Vector3? targetPathNode_POS=null;
     int pathNodeIndex = 0;
-    List<Vector3> ATTACKPATH;
+    List<Vector3> ATTACKPATH; List<Vector3> ATTConvertedBack;
     float ZombieMoveSpeed;//= 1f;
     float ZombieRotatSpeed;// = 10f;
 
@@ -18,11 +19,18 @@ public class FollowPath : NetworkBehaviour
     void Start() {
         ZombieMoveSpeed = GameSettings.Instance.Zspeed;
         ZombieRotatSpeed = GameSettings.Instance.ZRotateSpeed;
+        this.transform.SetParent(SharedCollection.Instance.transform, false);
     }
     //this is set by Spawner. It is the one to decide what player will be attacked by this zombie that it spawned
     public void FollowThisPath(List<Vector3> argPATH) {
-        
-        ATTACKPATH = argPATH;
+
+        List<Vector3> ATTConvertedBack = new List<Vector3>();
+
+        foreach (Vector3 v3 in argPATH) {
+            ATTConvertedBack.Add(SharedCollection.Instance.gameObject.transform.TransformPoint(v3));
+        }
+
+        ATTACKPATH =  argPATH;
         Debug.Log("z i waz gives argPATH with -> nodes = " + ATTACKPATH.Count);
         Debug.Log("I start at " + transform.position + " aka loc " + transform.localPosition);
 

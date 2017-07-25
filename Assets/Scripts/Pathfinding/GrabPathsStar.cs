@@ -81,7 +81,7 @@ public class GrabPathsStar : NetworkBehaviour
     IEnumerator Startin3()
     {
         Debug.Log("waiting for 8 secinds");
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(45);
         BuildStakatoOfZombies();
     }
   //  [ServerCallback]
@@ -97,23 +97,73 @@ public class GrabPathsStar : NetworkBehaviour
             yield return new WaitForSeconds(GameSettings.Instance.SpawnInterval);
             //Instantiate(zombietospawn);
             Debug.Log("Time to make aZZZZZZZ");
-            SpawnZonNetwork_OneFirstPath();
+            SpawnZonNetwork_OneFirstPath(x);
             //SpawnZonNetwork_InOrder();
         }
     }
 
     //or do the rpc Relative thing
    // [ServerCallback]
-    public void SpawnZonNetwork_OneFirstPath()
+    public void SpawnZonNetwork_OneFirstPath(int argx)
     {
         //  Quaternion rotation = anchor.transform.localRotation * relativeOrientation;
         //GameObject go = Instantiate(Znon, sharedWorldAnchorTransform.InverseTransformPoint(transform.position) , Quaternion.identity);
-        GameObject go = Instantiate(ZWithFollow, transform.position, Quaternion.identity);
+        GameObject go;
+        if (argx == 0)
+        {
+            go = Instantiate(ZWithFollow, transform.position, Quaternion.identity);
+
+         
+        }
+        else if (argx == 1)
+        {
+
+            go = Instantiate(ZWithFollow, sharedWorldAnchorTransform.TransformPoint(transform.position), Quaternion.identity);
+        }
+        else if (argx == 2)
+        {
+            go = Instantiate(ZWithFollow, sharedWorldAnchorTransform.InverseTransformPoint(transform.position), Quaternion.identity);
+        }
+        else if (argx == 3)
+        {
+            go = Instantiate(ZWithFollow, sharedWorldAnchorTransform.InverseTransformPoint(sharedWorldAnchorTransform.TransformPoint(transform.position)), Quaternion.identity);
+        }
+
+        else if (argx == 4)
+        {
+            go = Instantiate(ZWithFollow, transform.localPosition, Quaternion.identity);
+        }
+
+
+        else if (argx == 5)
+        {
+            go = Instantiate(ZWithFollow, sharedWorldAnchorTransform.TransformPoint(transform.localPosition), Quaternion.identity);
+        }
+        else if (argx == 6)
+        {
+            go = Instantiate(ZWithFollow, sharedWorldAnchorTransform.InverseTransformPoint(transform.localPosition), Quaternion.identity);
+        }
+
+        else if(argx==7)
+        {
+            go = Instantiate(ZWithFollow, sharedWorldAnchorTransform.InverseTransformPoint(sharedWorldAnchorTransform.TransformPoint(transform.localPosition)), Quaternion.identity);
+        }
+        else
+        {
+            go = Instantiate(ZWithFollow, transform.position, Quaternion.identity);
+        }
         //   Debug.Log("spawner puts z on path of " + Paths_to_ChosenZone_Grabbed[0].Count + " nodes");
-      //  go.transform.SetParent(sharedWorldAnchorTransform);
+        //  go.transform.SetParent(sharedWorldAnchorTransform);
 
-        go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
 
+        List<Vector3> conertedToinversShared = new List<Vector3>();
+        foreach (Vector3 v3 in Paths_to_ChosenZone_Grabbed[0]) {
+            conertedToinversShared.Add(sharedWorldAnchorTransform.InverseTransformPoint(v3));
+        }
+
+
+       // go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
+        go.GetComponent<FollowPath>().FollowThisPath(conertedToinversShared);
         NetworkServer.Spawn(go);
         
 
