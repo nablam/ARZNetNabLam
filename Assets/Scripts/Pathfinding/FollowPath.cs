@@ -36,7 +36,7 @@ public class FollowPath : MonoBehaviour {
         }
     }
 
-    void Update(){
+    void Update(){ 
         if (targetPathNode_POS == null) {
             GetNextPathNode();
             if (targetPathNode_POS == null){

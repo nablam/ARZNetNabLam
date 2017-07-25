@@ -36,6 +36,7 @@ public class DictoPlacedObjects : MonoBehaviour {
         _NumberOfDiversThingsInWolrd = 0;
         TEMPtestBoxIds = new List<string>();
         TEMPthesePlaedObjects = new List<GameObject>();
+        DICT_clear();
     }
     #endregion
 

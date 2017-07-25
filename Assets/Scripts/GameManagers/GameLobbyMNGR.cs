@@ -4,10 +4,32 @@ using UnityEngine;
 
 public class GameLobbyMNGR : MonoBehaviour {
 
-   
+    public RoomLoader rmlrd;
     private void Awake()
     {
         ObjsFromStoreOBJ.SetbjcksManager(ObjsMngr);
+    }
+
+    private void Start()
+    {
+  
+
+    }
+
+    bool clickedServerdo = false;
+    public void OkOKdoWillServ()
+    {
+        if (!clickedServerdo)
+        {
+            rmlrd.LoadMeshed();
+            OkLoadALlALLOBBY();
+            InitGridMap();
+            clickedServerdo = true;
+        }
+        else {
+            Debug.Log("already clicked !");
+        }
+
     }
 
 

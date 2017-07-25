@@ -141,10 +141,10 @@ namespace HoloToolkit.Examples.SharingWithUNET
 
         public void OnInputClicked(InputClickedEventData eventData)
         {
-            if (isLocalPlayer)
-            {
-                CmdFire();
-            }
+            //if (isLocalPlayer)
+            //{
+            //    CmdFire();
+            //}
         }
     }
 }

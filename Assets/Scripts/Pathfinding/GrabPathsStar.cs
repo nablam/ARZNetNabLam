@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.SharingWithUNET;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -21,7 +22,9 @@ public class GrabPathsStar : NetworkBehaviour
   
     [Server]
     void initmeWhenIAwakeOnServer() {
-      
+
+
+        this.transform.parent = SharedCollection.Instance.gameObject.transform;
         _MycorrespondingSpawnTagObject = GameObject.FindGameObjectWithTag("Respawn");
 
         GOpm = GameObject.FindObjectOfType<PathsManager>().GetComponent<PathsManager>();
@@ -86,12 +89,19 @@ public class GrabPathsStar : NetworkBehaviour
     //or do the rpc Relative thing
     public void SpawnZonNetwork_OneFirstPath()
     {
-        GameObject go = Instantiate(Z, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(Z, SharedCollection.Instance.gameObject.transform.InverseTransformPoint( transform.position), Quaternion.identity);
+
+
+
         Debug.Log("spawner puts z on path of " + Paths_to_ChosenZone_Grabbed[0].Count + " nodes");
+        go.AddComponent<FollowPath>();
+
         go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
 
         NetworkServer.Spawn(go);
     }
+
+ 
 
 
 

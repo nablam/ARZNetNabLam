@@ -11,17 +11,27 @@ public class GameEditMNGR : MonoBehaviour {
         ObjsFromStoreOBJ.SetbjcksManager(ObjsMngr);
 
     }
+    private void Start()
+    {
+        RoomLodr.LoadMeshed();
+    }
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
     #region Dependencies   
     // public GameSettings Settings;
     public ObjsToStore ObjsToStoreOBJ;
     public ObjsFromStore ObjsFromStoreOBJ;
     public ObjsManager ObjsMngr;
+    public RoomLoader RoomLodr;
     //ObjsManager.Instance is global just for testing
     #endregion
 
-    public void OKSAveAll( ) {
-        DictoPlacedObjects.Instance.oksavingallplaced(ObjsToStoreOBJ);
+    bool allsaved = false;
+    public void OKSAveAll() {
+        if (!allsaved) { DictoPlacedObjects.Instance.oksavingallplaced(ObjsToStoreOBJ); allsaved = true; }
+        else{
+            Debug.Log(" Alreafdy clicked once dude!" );
+        }
+                   
     }
 
     public void OkLoadALl() {
