@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class RecurShowChildAll : MonoBehaviour, IFocusable, IInputClickHandler
 {
@@ -33,21 +34,43 @@ public class RecurShowChildAll : MonoBehaviour, IFocusable, IInputClickHandler
     }
 
     GameObject[] AllgosInScnene;
-    LineRenderer line;
+    List<GameObject> SomegosInScene;
+    GameObject[] SomeGosIOnScneFiltered;
+  LineRenderer line;
     int i;
     bool linesDrawn;
     private void Start()
     {
         linesDrawn = false;       
         LineObjects = new List<GameObject>();
+        SomegosInScene = new List<GameObject>();
 
+    }
+
+    void GetObjectsWeNeed()
+    {
+       
+        var exceptions = new string[] { "GridMap", "NodeTag", "SpatialMesh" };
+       
+
+        AllgosInScnene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+        int allcount = AllgosInScnene.Length;
+
+        SomeGosIOnScneFiltered   = AllgosInScnene.Where(x => !exceptions.Contains(x.tag)).ToArray<GameObject>();
+        int cnt = 0;
+        foreach (GameObject g in SomeGosIOnScneFiltered) {
+            cnt++;
+        }
+        Debug.Log("used to have " + allcount + " after filter ->" + cnt);
     }
 
     public void MapAllChildren() {
         if (!linesDrawn)
         {
-            AllgosInScnene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-            foreach (GameObject g in AllgosInScnene)
+          //  AllgosInScnene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
+            GetObjectsWeNeed();
+           
+            foreach (GameObject g in SomeGosIOnScneFiltered)
             {
                 ShowChildrenRecur(g.transform);
             }

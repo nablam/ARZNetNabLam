@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4100625265088762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NodeGeneric
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4130070627763168}
   - component: {fileID: 23273541613166260}
   - component: {fileID: 102008049516708626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: num
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4812239754432438}
   - component: {fileID: 33882498420838784}
   - component: {fileID: 23244559563299010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -9,7 +9,10 @@ using UnityEngine.Windows.Speech;
 
 
 public class NetPlacer : NetworkBehaviour {
-
+    /// <summary>
+    /// The transform of the shared world anchor.
+    /// </summary>
+    private Transform sharedWorldAnchorTransform;
 
     public GameObject Nettobj;
 
@@ -18,7 +21,9 @@ public class NetPlacer : NetworkBehaviour {
 
     void Start()
     {
-  
+
+        sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
+        transform.SetParent(sharedWorldAnchorTransform);
 
         keywords.Add("Put it there", () =>
         {
@@ -73,12 +78,10 @@ public class NetPlacer : NetworkBehaviour {
     void RpcSimpleInstance(Vector3 argrelativePosition)
     {
         Vector3 Clientposition = SharedCollection.Instance.gameObject.transform.TransformPoint(argrelativePosition);
-        Instantiate(Nettobj, Clientposition, Quaternion.identity);
-        
-
+        Instantiate(Nettobj, Clientposition, Quaternion.identity);     
     }
 
-    void PlaceItOnRespawn() {
-        Nettobj.transform.position = foundSpawn.transform.position;
-    }
+    //void PlaceItOnRespawn() {
+    //    Nettobj.transform.position = foundSpawn.transform.position;
+    //}
 }
