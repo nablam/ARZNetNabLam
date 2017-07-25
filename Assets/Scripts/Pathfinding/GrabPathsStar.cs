@@ -15,6 +15,8 @@ public class GrabPathsStar : NetworkBehaviour
     public GameObject Znon;
     public GameObject ZWithFollow;
 
+    public GameObject Zbetter;
+
     GameObject _Z1FOUND;
     GameObject _Z2Found;
     PathsManager GOpm;
@@ -64,22 +66,23 @@ public class GrabPathsStar : NetworkBehaviour
 
 
     }
-
+    [ServerCallback]
     void DecideWhoToAttack()
     {
         AttackingZone1 = Random.Range(0, 100) % 2 == 0 ? true : false;
     }
-
+    [ServerCallback]
     IEnumerator Startin3()
     {
         yield return new WaitForSeconds(1);
         BuildStakatoOfZombies();
     }
+    [ServerCallback]
     void BuildStakatoOfZombies()
     {
         StartCoroutine(MakeZEvryXForTicks());
     }
-
+    [ServerCallback]
     IEnumerator MakeZEvryXForTicks()
     {
         for (int x = 0; x < GameSettings.Instance.TotalZombiesToSpawn; x++)
@@ -98,21 +101,15 @@ public class GrabPathsStar : NetworkBehaviour
     {
         //  Quaternion rotation = anchor.transform.localRotation * relativeOrientation;
         //GameObject go = Instantiate(Znon, sharedWorldAnchorTransform.InverseTransformPoint(transform.position) , Quaternion.identity);
-        GameObject go = Instantiate(Znon, transform.position, Quaternion.identity);
+        GameObject go = Instantiate(Zbetter, transform.position, Quaternion.identity);
         Debug.Log("spawner puts z on path of " + Paths_to_ChosenZone_Grabbed[0].Count + " nodes");
-        if (isClient)
-        {
-            NetworkServer.Spawn(go);
-            return;
-        }
-        else
-        {
-            FollowPath fp=go.AddComponent<FollowPath>();
+       
+            FollowPath fp=go.GetComponent<FollowPath>();
             fp.FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
             go.transform.SetParent(sharedWorldAnchorTransform);
 
             NetworkServer.Spawn(go);
-        }
+        
 
         if (isServer) { Debug.Log("pathstargrab XXX---IAMSERVER"); } else { Debug.Log("pathstargrab XXX--- not server"); }
         if (isClient) { Debug.Log("pathstargrab XXX---IAM CLIENT"); } else { Debug.Log("pathstargrab XXX--- not client"); }

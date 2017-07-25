@@ -12,8 +12,22 @@ public class GameLobbyMNGR : MonoBehaviour {
     private void Start()
     {
         rl.LoadMeshed();
-        OkLoadALlALLOBBY();
-        InitGridMap();
+       
+    }
+
+    bool doneserverstuff = false;
+    public void OKDoServerStuff() {
+        if (!doneserverstuff)
+        {
+            OkLoadALlALLOBBY();
+            InitGridMap();
+            doneserverstuff = true;
+        }
+        else
+        {
+            Debug.Log("already clicked doserver styff");
+        }
+     
     }
 
     public LayerMask layerMask = Physics.DefaultRaycastLayers;

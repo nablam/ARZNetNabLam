@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class FollowPath : MonoBehaviour {
+public class FollowPath : NetworkBehaviour
+{
 
  
     Vector3? targetPathNode_POS=null;
@@ -13,7 +15,7 @@ public class FollowPath : MonoBehaviour {
 
     public float health = 1f;
 
-    void OnEnable() {
+    void Start() {
         ZombieMoveSpeed = GameSettings.Instance.Zspeed;
         ZombieRotatSpeed = GameSettings.Instance.ZRotateSpeed;
     }
@@ -36,7 +38,7 @@ public class FollowPath : MonoBehaviour {
         }
     }
 
-    void Update(){
+    void FixedUpdate(){
         if (targetPathNode_POS == null) {
             GetNextPathNode();
             if (targetPathNode_POS == null){
