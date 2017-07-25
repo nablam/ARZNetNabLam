@@ -21,24 +21,41 @@ public class FollowPath : NetworkBehaviour
     }
     //this is set by Spawner. It is the one to decide what player will be attacked by this zombie that it spawned
     public void FollowThisPath(List<Vector3> argPATH) {
-        ATTACKPATH = argPATH;   
+        
+        ATTACKPATH = argPATH;
+        Debug.Log("z i waz gives argPATH with -> nodes = " + ATTACKPATH.Count);
+        Debug.Log("I start at " + transform.position + " aka loc " + transform.localPosition);
+
+        if (argPATH.Count > 0) { Debug.Log("first   " + ATTACKPATH[0]);
+                                 Debug.Log("second  " + ATTACKPATH[1]); }
+        if (argPATH.Count > 1) { Debug.Log("third   " + ATTACKPATH[2]); }
+        if (argPATH.Count > 2) { Debug.Log("fourth  " + ATTACKPATH[3]); }
     }
 
     void GetNextPathNode()
     {
+        Debug.Log("getting next node");
         if (pathNodeIndex < ATTACKPATH.Count)
         {
             targetPathNode_POS = ATTACKPATH[pathNodeIndex];
+            Debug.Log("next node is "+ targetPathNode_POS);
             pathNodeIndex++;
         }
         else
         {
+            Debug.Log("reachedend");
             targetPathNode_POS = null;
             ReachedGoal();
         }
     }
 
     void FixedUpdate(){
+        if (!isServer)
+        {
+            Debug.Log(" z is not server!");
+            return;
+        }
+
         if (targetPathNode_POS == null) {
             GetNextPathNode();
             if (targetPathNode_POS == null){

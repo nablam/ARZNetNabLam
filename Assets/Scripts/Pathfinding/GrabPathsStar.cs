@@ -22,15 +22,21 @@ public class GrabPathsStar : NetworkBehaviour
     PathsManager GOpm;
     bool AttackingZone1;
     GameObject _MycorrespondingSpawnTagObject;
-    void Start()
+    //public override void OnStartServer()
+    //{
+    //    sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
+    //    initmeWhenIAwakeOnServer();
+    //}
+
+
+    public void OKstarDoInitWillbeCalledFromONserverstart()
     {
         sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
         initmeWhenIAwakeOnServer();
     }
 
-
     //maybe a command is better , it will execute on server 
-    [ServerCallback]
+    //[ServerCallback]
     void initmeWhenIAwakeOnServer() {
       
         _MycorrespondingSpawnTagObject = GameObject.FindGameObjectWithTag("Respawn");
@@ -49,7 +55,7 @@ public class GrabPathsStar : NetworkBehaviour
 
         DecideWhoToAttack();
 
-        Debug.Log("decided to attack zoneone " + AttackingZone1);
+       // Debug.Log("decided to attack zoneone " + AttackingZone1);
         if (AttackingZone1)
         {
             Paths_to_ChosenZone_Grabbed = GOpm.GiveMeMyPathsForIamNetworkedSpawnNET(_Z1FOUND, _MycorrespondingSpawnTagObject);
@@ -62,27 +68,28 @@ public class GrabPathsStar : NetworkBehaviour
             // Debug.Log("grabbed " + Paths_to_ChosenZone_Grabbed.Count);
             StartCoroutine(Startin3());
         }
-        Debug.Log("path grabbed has " + Paths_to_ChosenZone_Grabbed.Count + " verts in it ");
+       // Debug.Log("path grabbed has " + Paths_to_ChosenZone_Grabbed.Count + " verts in it ");
 
 
     }
-    [ServerCallback]
+  //  [ServerCallback]
     void DecideWhoToAttack()
     {
-        AttackingZone1 = Random.Range(0, 100) % 2 == 0 ? true : false;
+        AttackingZone1 = true;// Random.Range(0, 100) % 2 == 0 ? true : false;
     }
-    [ServerCallback]
+   // [ServerCallback]
     IEnumerator Startin3()
     {
-        yield return new WaitForSeconds(1);
+        Debug.Log("waiting for 8 secinds");
+        yield return new WaitForSeconds(8);
         BuildStakatoOfZombies();
     }
-    [ServerCallback]
+  //  [ServerCallback]
     void BuildStakatoOfZombies()
     {
         StartCoroutine(MakeZEvryXForTicks());
     }
-    [ServerCallback]
+  //  [ServerCallback]
     IEnumerator MakeZEvryXForTicks()
     {
         for (int x = 0; x < GameSettings.Instance.TotalZombiesToSpawn; x++)
@@ -96,24 +103,23 @@ public class GrabPathsStar : NetworkBehaviour
     }
 
     //or do the rpc Relative thing
-    [ServerCallback]
+   // [ServerCallback]
     public void SpawnZonNetwork_OneFirstPath()
     {
         //  Quaternion rotation = anchor.transform.localRotation * relativeOrientation;
         //GameObject go = Instantiate(Znon, sharedWorldAnchorTransform.InverseTransformPoint(transform.position) , Quaternion.identity);
-        GameObject go = Instantiate(Zbetter, transform.position, Quaternion.identity);
-        Debug.Log("spawner puts z on path of " + Paths_to_ChosenZone_Grabbed[0].Count + " nodes");
-       
-            FollowPath fp=go.GetComponent<FollowPath>();
-            fp.FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
-            go.transform.SetParent(sharedWorldAnchorTransform);
+        GameObject go = Instantiate(ZWithFollow, transform.position, Quaternion.identity);
+        //   Debug.Log("spawner puts z on path of " + Paths_to_ChosenZone_Grabbed[0].Count + " nodes");
+      //  go.transform.SetParent(sharedWorldAnchorTransform);
 
-            NetworkServer.Spawn(go);
+        go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
+
+        NetworkServer.Spawn(go);
         
 
-        if (isServer) { Debug.Log("pathstargrab XXX---IAMSERVER"); } else { Debug.Log("pathstargrab XXX--- not server"); }
-        if (isClient) { Debug.Log("pathstargrab XXX---IAM CLIENT"); } else { Debug.Log("pathstargrab XXX--- not client"); }
-        if (isLocalPlayer) { Debug.Log("pathstargrab XXX---IAM Localplayer"); } else { Debug.Log("pathstargrab XXX--- not loclplayer"); }
+        //if (isServer) { Debug.Log("pathstargrab XXX---IAMSERVER"); } else { Debug.Log("pathstargrab XXX--- not server"); }
+        //if (isClient) { Debug.Log("pathstargrab XXX---IAM CLIENT"); } else { Debug.Log("pathstargrab XXX--- not client"); }
+        //if (isLocalPlayer) { Debug.Log("pathstargrab XXX---IAM Localplayer"); } else { Debug.Log("pathstargrab XXX--- not loclplayer"); }
 
     }
 

@@ -19,69 +19,86 @@ public class NetPlacer : NetworkBehaviour {
     KeywordRecognizer keywordRecognizer = null;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
-    void Start()
+    public override void OnStartServer()
     {
-
         sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
         transform.SetParent(sharedWorldAnchorTransform);
-
-        keywords.Add("Put it there", () =>
-        {
-            PlaceNetObject();
-
-
-        });
- 
-
-        // Tell the KeywordRecognizer about our keywords.
-        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
-
-        // Register a callback for the KeywordRecognizer and start recognizing!
-        keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
-        keywordRecognizer.Start();
-    }
-
-    private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
-    {
-        System.Action keywordAction;
-        if (keywords.TryGetValue(args.text, out keywordAction))
-        {
-            keywordAction.Invoke();
-        }
-    }
-
-
-
-    void PlaceNetObject() {
-        Debug.Log("putting it there");
         FindSpawnpointINScene();
-        // PlaceItOnRespawn();
-        simpleInstance();
 
+        
+        GameObject NetSpawner=   Instantiate(Nettobj, foundSpawn.transform.position, Quaternion.identity) as GameObject;
+        NetSpawner.transform.parent = SharedCollection.Instance.gameObject.transform;
+
+        NetSpawner.GetComponent<GrabPathsStar>().OKstarDoInitWillbeCalledFromONserverstart();
     }
+
+    //void Start()
+    //{
+
+    //    sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
+    //    transform.SetParent(sharedWorldAnchorTransform);
+
+    //    keywords.Add("Put it there", () =>
+    //    {
+    //        PlaceNetObject();
+
+
+    //    });
+
+
+    //    // Tell the KeywordRecognizer about our keywords.
+    //    keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
+
+    //    // Register a callback for the KeywordRecognizer and start recognizing!
+    //    keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
+    //    keywordRecognizer.Start();
+    //}
+
+
+
+    //private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    //{
+    //    System.Action keywordAction;
+    //    if (keywords.TryGetValue(args.text, out keywordAction))
+    //    {
+    //        keywordAction.Invoke();
+    //    }
+    //}
+
+
+
+    //void PlaceNetObject() {
+    //    Debug.Log("putting it there");
+    //    FindSpawnpointINScene();
+    //    // PlaceItOnRespawn();
+    //    simpleInstanceOnMeAndOther();
+    //}
 
     GameObject foundSpawn;
     void FindSpawnpointINScene() {
         foundSpawn = GameObject.FindGameObjectWithTag("Respawn");
     }
 
-    void simpleInstance()
-    {
-        if (isServer) {
-            Vector3 relativePosition = SharedCollection.Instance.gameObject.transform.InverseTransformPoint(foundSpawn.transform.position);
-            RpcSimpleInstance(relativePosition);
-        } 
-    }
+    //void simpleInstanceOnMeAndOther()
+    //{
+    //    if (isServer) {
+    //        Vector3 relativePosition = SharedCollection.Instance.gameObject.transform.InverseTransformPoint(foundSpawn.transform.position);
+    //        RpcSimpleInstance(relativePosition);
+    //    } 
+    //}
 
-    //thsi is how we willplace ammoboxes and stuff on the client 
-    [ClientRpc]
-    void RpcSimpleInstance(Vector3 argrelativePosition)
-    {
-        Vector3 Clientposition = SharedCollection.Instance.gameObject.transform.TransformPoint(argrelativePosition);
-        GameObject NetSpawner=   Instantiate(Nettobj, Clientposition, Quaternion.identity) as GameObject;
-        NetSpawner.transform.parent = SharedCollection.Instance.gameObject.transform;
+    ////thsi is how we willplace ammoboxes and stuff on the client 
+    //[ClientRpc]
+    //void RpcSimpleInstance(Vector3 argrelativePosition)
+    //{
+    //    Vector3 Clientposition = SharedCollection.Instance.gameObject.transform.TransformPoint(argrelativePosition);
+    //    GameObject NetSpawner=   Instantiate(Nettobj, Clientposition, Quaternion.identity) as GameObject;
+    //    NetSpawner.transform.parent = SharedCollection.Instance.gameObject.transform;
          
-    }
+    //}
+
+
+
 
     //void PlaceItOnRespawn() {
     //    Nettobj.transform.position = foundSpawn.transform.position;
