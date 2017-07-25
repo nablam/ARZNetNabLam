@@ -9,7 +9,12 @@ public class GameLobbyMNGR : MonoBehaviour {
     {
         ObjsFromStoreOBJ.SetbjcksManager(ObjsMngr);
     }
-
+    private void Start()
+    {
+        rl.LoadMeshed();
+        OkLoadALlALLOBBY();
+        InitGridMap();
+    }
 
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
     #region Dependencies   
@@ -17,8 +22,11 @@ public class GameLobbyMNGR : MonoBehaviour {
     public ObjsManager ObjsMngr;
 
     public PathsManager _PathMANAGER;
+
     GridMap GridMapObj;
+    public RoomLoader rl;
     #endregion
+
 
 
 

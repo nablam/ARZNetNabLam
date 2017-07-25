@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114000012697339884}
   m_Layer: 0
   m_Name: AnchorManager
-  m_TagString: Untagged
+  m_TagString: UIObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,4 +84,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc063af12c898314e91f242d2bded0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnchorName: WA
+  AnchorName: Default

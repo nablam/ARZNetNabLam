@@ -1,4 +1,5 @@
-﻿using HoloToolkit.Unity;
+﻿using HoloToolkit.Examples.SharingWithUNET;
+using HoloToolkit.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -118,7 +119,10 @@ public class ObjsFromStore : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    /// The transform of the shared world anchor.
+    /// </summary>
+    private Transform sharedWorldAnchorTransform;
 
     GameObject InstantiateObject_toBePlacedInTheWorld(GameObject obj, string id, Vector3 position, Quaternion rotation)
     {
@@ -126,6 +130,13 @@ public class ObjsFromStore : MonoBehaviour
         o.name = id;
         PersistoNab pscript = o.GetComponent<PersistoNab>();
         pscript.SetAnchorStoreName(id);
+
+        if (!id.Contains("GridMap"))
+        {
+            sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
+            o.transform.SetParent(sharedWorldAnchorTransform);
+        }
+
         return o;
     }
 

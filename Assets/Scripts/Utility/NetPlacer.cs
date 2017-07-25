@@ -78,7 +78,9 @@ public class NetPlacer : NetworkBehaviour {
     void RpcSimpleInstance(Vector3 argrelativePosition)
     {
         Vector3 Clientposition = SharedCollection.Instance.gameObject.transform.TransformPoint(argrelativePosition);
-        Instantiate(Nettobj, Clientposition, Quaternion.identity);     
+     GameObject NetSpawner=   Instantiate(Nettobj, Clientposition, Quaternion.identity) as GameObject;
+        NetSpawner.transform.parent = this.transform.parent;
+         
     }
 
     //void PlaceItOnRespawn() {

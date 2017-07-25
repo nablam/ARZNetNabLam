@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using HoloToolkit.Examples.SharingWithUNET;
 
 public class PathsManager : MonoBehaviour {
- 
-   
+    /// <summary>
+    /// The transform of the shared world anchor.
+    /// </summary>
+    private Transform sharedWorldAnchorTransform;
+
     //a quad mesh to debug paths
- 
+
     public GameObject PF1node;
 
  
@@ -125,6 +129,8 @@ public class PathsManager : MonoBehaviour {
             go_nP1.name = "p1n" + n.ToString();
             go_nP1.transform.parent = this.transform;
             go_nP1.GetComponentInChildren<Renderer>().material.color = argColor;//
+            sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
+            go_nP1.transform.SetParent(sharedWorldAnchorTransform);
             // Path_P1_Tags_OBJ.Add(go_nP1);
         }
     }

@@ -11,12 +11,18 @@ public class GameEditMNGR : MonoBehaviour {
         ObjsFromStoreOBJ.SetbjcksManager(ObjsMngr);
 
     }
+
+    private void Start()
+    {
+        rl.LoadMeshed();
+    }
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
     #region Dependencies   
     // public GameSettings Settings;
     public ObjsToStore ObjsToStoreOBJ;
     public ObjsFromStore ObjsFromStoreOBJ;
     public ObjsManager ObjsMngr;
+    public RoomLoader rl;
     //ObjsManager.Instance is global just for testing
     #endregion
 

@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 4990766002519160}
   m_Layer: 0
   m_Name: _MyControleTower
-  m_TagString: Untagged
+  m_TagString: UIObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1718,7 +1718,8 @@ MonoBehaviour:
   StackText: {fileID: 114031875024280814}
   output: 
   stack: 
-  _MaxLines: 80
+  _MaxLinesDEBUG: 36
+  _MaxLinesStackTrace: 5
   DisplayOn: 1
 --- !u!114 &114830824420012392
 MonoBehaviour:
@@ -2110,7 +2111,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 600}
+  m_SizeDelta: {x: 1000, y: 1500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224592665258031534
 RectTransform:
@@ -2223,7 +2224,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -112.805145, y: -4.200001}
-  m_SizeDelta: {x: 1100, y: 800}
+  m_SizeDelta: {x: 1100, y: 2000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224846640142237158
 RectTransform:

@@ -50,7 +50,7 @@ public class RecurShowChildAll : MonoBehaviour, IFocusable, IInputClickHandler
     void GetObjectsWeNeed()
     {
        
-        var exceptions = new string[] { "GridMap", "NodeTag", "SpatialMesh" };
+        var exceptions = new string[] { "GridMap", "GridPoint", "NodeTag", "SpatialMesh" ,"MainCamera","UIObject"};
        
 
         AllgosInScnene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
