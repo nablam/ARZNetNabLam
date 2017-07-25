@@ -13,7 +13,7 @@ public class FollowPath : MonoBehaviour {
 
     public float health = 1f;
 
-    void Awake() {
+    void OnEnable() {
         ZombieMoveSpeed = GameSettings.Instance.Zspeed;
         ZombieRotatSpeed = GameSettings.Instance.ZRotateSpeed;
     }

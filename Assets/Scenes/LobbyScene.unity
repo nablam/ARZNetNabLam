@@ -206,7 +206,7 @@ Prefab:
     - target: {fileID: 114376962053080464, guid: 7fc31c62cf827fd44a25921b25f9d0d6,
         type: 2}
       propertyPath: m_SpawnPrefabs.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4712389666120876, guid: 7fc31c62cf827fd44a25921b25f9d0d6, type: 2}
       propertyPath: m_LocalPosition.x
@@ -256,6 +256,12 @@ Prefab:
       propertyPath: m_TagString
       value: UIObject
       objectReference: {fileID: 0}
+    - target: {fileID: 114376962053080464, guid: 7fc31c62cf827fd44a25921b25f9d0d6,
+        type: 2}
+      propertyPath: m_SpawnPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 1867939041253326, guid: ec4259ad022936e489e63cf48fff1e67,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fc31c62cf827fd44a25921b25f9d0d6, type: 2}
   m_IsPrefabParent: 0

@@ -73,13 +73,13 @@ public class NetPlacer : NetworkBehaviour {
         } 
     }
 
-
+    //thsi is how we willplace ammoboxes and stuff on the client 
     [ClientRpc]
     void RpcSimpleInstance(Vector3 argrelativePosition)
     {
         Vector3 Clientposition = SharedCollection.Instance.gameObject.transform.TransformPoint(argrelativePosition);
-     GameObject NetSpawner=   Instantiate(Nettobj, Clientposition, Quaternion.identity) as GameObject;
-        NetSpawner.transform.parent = this.transform.parent;
+        GameObject NetSpawner=   Instantiate(Nettobj, Clientposition, Quaternion.identity) as GameObject;
+        NetSpawner.transform.parent = SharedCollection.Instance.gameObject.transform;
          
     }
 

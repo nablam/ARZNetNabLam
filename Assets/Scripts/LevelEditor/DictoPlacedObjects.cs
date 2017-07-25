@@ -103,6 +103,9 @@ public class DictoPlacedObjects : MonoBehaviour {
 
     public void DICT_clear() {
         LISTOFALL.Clear();
+        TEMPtestBoxIds.Clear();
+        _NumberOfDiversThingsInWolrd = 0;
+        TEMPthesePlaedObjects.Clear();
     }
 
 

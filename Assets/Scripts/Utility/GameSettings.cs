@@ -167,11 +167,11 @@ public class GameSettings : MonoBehaviour {
         BottomSegmentSizeMaster = 3f;
 
         SegmentSizeMaster = 0.4f;
-        SpawnInterval = 3f;
-        TotalZombiesToSpawn = 10;
+        SpawnInterval = 10f;
+        TotalZombiesToSpawn = 6;
 
 
-        Zspeed = 1f;
+        Zspeed = 0.1f;
         ZRotateSpeed = 10f;
 
        numberOfPAthsPerSpawnPoint = 1;

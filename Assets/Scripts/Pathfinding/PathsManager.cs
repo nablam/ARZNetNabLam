@@ -93,6 +93,12 @@ public class PathsManager : MonoBehaviour {
         List<List<Vector3>> temp = getPAthsTOZone(ZoneGo.name, SpawnGO.name);
         return temp;
     }
+    //                                                           ZoneOne1            TestBox3
+    public List<List<Vector3>> GiveMeMyPathsByStarEndNames(string Zonename, string spawnname)
+    {
+        List<List<Vector3>> temp = getPAthsTOZone(Zonename, spawnname);
+        return temp;
+    }
 
     void BuildDatapathForStartNode(GridMap argManp, GameObject GO_Spawn, GameObject ZoneObj,DataZone argDz)
     {

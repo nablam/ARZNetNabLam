@@ -1,12 +1,19 @@
-﻿using System.Collections;
+﻿using HoloToolkit.Examples.SharingWithUNET;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class GrabPathsStar : NetworkBehaviour
 {
+
+    /// <summary>
+    /// The transform of the shared world anchor.
+    /// </summary>
+    private Transform sharedWorldAnchorTransform;
     List<List<Vector3>> Paths_to_ChosenZone_Grabbed;
-    public GameObject Z;
+    public GameObject Znon;
+    public GameObject ZWithFollow;
 
     GameObject _Z1FOUND;
     GameObject _Z2Found;
@@ -15,11 +22,13 @@ public class GrabPathsStar : NetworkBehaviour
     GameObject _MycorrespondingSpawnTagObject;
     void Start()
     {
-
+        sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
         initmeWhenIAwakeOnServer();
     }
-  
-    [Server]
+
+
+    //maybe a command is better , it will execute on server 
+    [ServerCallback]
     void initmeWhenIAwakeOnServer() {
       
         _MycorrespondingSpawnTagObject = GameObject.FindGameObjectWithTag("Respawn");
@@ -84,13 +93,31 @@ public class GrabPathsStar : NetworkBehaviour
     }
 
     //or do the rpc Relative thing
+    [ServerCallback]
     public void SpawnZonNetwork_OneFirstPath()
     {
-        GameObject go = Instantiate(Z, transform.position, Quaternion.identity);
+        //  Quaternion rotation = anchor.transform.localRotation * relativeOrientation;
+        //GameObject go = Instantiate(Znon, sharedWorldAnchorTransform.InverseTransformPoint(transform.position) , Quaternion.identity);
+        GameObject go = Instantiate(Znon, transform.position, Quaternion.identity);
         Debug.Log("spawner puts z on path of " + Paths_to_ChosenZone_Grabbed[0].Count + " nodes");
-        go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
+        if (isClient)
+        {
+            NetworkServer.Spawn(go);
+            return;
+        }
+        else
+        {
+            FollowPath fp=go.AddComponent<FollowPath>();
+            fp.FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
+            go.transform.SetParent(sharedWorldAnchorTransform);
 
-        NetworkServer.Spawn(go);
+            NetworkServer.Spawn(go);
+        }
+
+        if (isServer) { Debug.Log("pathstargrab XXX---IAMSERVER"); } else { Debug.Log("pathstargrab XXX--- not server"); }
+        if (isClient) { Debug.Log("pathstargrab XXX---IAM CLIENT"); } else { Debug.Log("pathstargrab XXX--- not client"); }
+        if (isLocalPlayer) { Debug.Log("pathstargrab XXX---IAM Localplayer"); } else { Debug.Log("pathstargrab XXX--- not loclplayer"); }
+
     }
 
 
