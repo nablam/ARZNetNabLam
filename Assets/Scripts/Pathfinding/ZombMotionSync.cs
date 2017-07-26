@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using HoloToolkit.Examples.SharingWithUNET;
+
 [NetworkSettings(sendInterval = 0.033f)]
 public class ZombMotionSync : NetworkBehaviour
 {
@@ -44,7 +46,7 @@ public class ZombMotionSync : NetworkBehaviour
         {
             return;
         }
-        syncPos = myTransform.localPosition;     
+        syncPos = SharedCollection.Instance.gameObject.transform.InverseTransformPoint(myTransform.position);     
     }
     void simpleReceive()
     {
@@ -52,7 +54,8 @@ public class ZombMotionSync : NetworkBehaviour
         {
             return;
         }
-        myTransform.position = syncPos;
+        myTransform.position = SharedCollection.Instance.gameObject.transform.TransformPoint(syncPos);
+      
     }
 
     [Command]

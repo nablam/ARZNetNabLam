@@ -168,7 +168,7 @@ public class GameSettings : MonoBehaviour {
 
         SegmentSizeMaster = 0.5f;
 
-        spawndelay = 30f;
+        spawndelay = 45f;
         SpawnInterval = 10f;
         TotalZombiesToSpawn = 8;
 

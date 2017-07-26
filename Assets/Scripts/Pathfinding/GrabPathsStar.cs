@@ -165,7 +165,7 @@ public class GrabPathsStar : NetworkBehaviour
 
 
        // go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
-        go.GetComponent<FollowPath>().FollowThisPath(conertedToinversShared);
+        go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[0]);
        // go.GetComponent<FollowPath>().tm.text = argx.ToString();
         NetworkServer.Spawn(go);
         

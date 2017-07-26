@@ -30,7 +30,7 @@ public class FollowPath : NetworkBehaviour
             ATTConvertedBack.Add(SharedCollection.Instance.gameObject.transform.TransformPoint(v3));
         }
 
-        ATTACKPATH =  argPATH;
+        ATTACKPATH = argPATH;// argPATH;
         //Debug.Log("z i waz gives argPATH with -> nodes = " + ATTACKPATH.Count);
         //Debug.Log("I start at " + transform.position + " aka loc " + transform.localPosition);
 

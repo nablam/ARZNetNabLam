@@ -26,9 +26,9 @@ public class NetPlacer : NetworkBehaviour {
         FindSpawnpointINScene();
 
         
-        GameObject NetSpawner=   Instantiate(Nettobj, foundSpawn.transform.position, Quaternion.identity) as GameObject;
-        NetSpawner.transform.parent = SharedCollection.Instance.gameObject.transform;
-
+        GameObject NetSpawner=   Instantiate(Nettobj, foundSpawn.transform.localPosition, Quaternion.identity) as GameObject;
+        //NetSpawner.transform.parent = SharedCollection.Instance.gameObject.transform;
+        NetSpawner.transform.SetParent(sharedWorldAnchorTransform);
         NetSpawner.GetComponent<GrabPathsStar>().OKstarDoInitWillbeCalledFromONserverstart();
     }
 
