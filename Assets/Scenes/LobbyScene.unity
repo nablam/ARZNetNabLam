@@ -968,6 +968,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114060360051139046, guid: 765804ca7f046604daf9000c52f648c1,
+        type: 2}
+      propertyPath: surfaceObject
+      value: 
+      objectReference: {fileID: 1000012660072482, guid: 669c36f1fbba5394189dc998e2a92bc7,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 765804ca7f046604daf9000c52f648c1, type: 2}
   m_IsPrefabParent: 0
