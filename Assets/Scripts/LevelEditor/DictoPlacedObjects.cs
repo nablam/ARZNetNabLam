@@ -85,19 +85,19 @@ public class DictoPlacedObjects : MonoBehaviour {
             if (td.GetID() == argId)
             {
                 found = true;
-                Debug.Log("yay we found a transform for " + argId);
+               // Debug.Log("yay we found a transform for " + argId);
                 transtoget = td;
                 break;
             }
         }
      
-        if (found)
-        {
-            Debug.Log("we broke out of the loop cuz we found a transform ");
-        }
-        else {
-            Debug.Log("SHIT we didnt find the transfom,, we ar using this.transf ");
-        }
+        //if (found)
+        //{
+        //    Debug.Log("we broke out of the loop cuz we found a transform ");
+        //}
+        //else {
+        //    Debug.Log("SHIT we didnt find the transfom,, we ar using this.transf ");
+        //}
         return transtoget;
     }
 

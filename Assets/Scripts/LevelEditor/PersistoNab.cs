@@ -27,7 +27,7 @@ public class PersistoNab : MonoBehaviour
 
     public void SetAnchorStoreName(string argIDpassed)
     {
-        Debug.Log("setting name of persisionab to " + argIDpassed);
+      //  Debug.Log("setting name of persisionab to " + argIDpassed);
         anchorNameInStore = argIDpassed;
         WorldAnchorStore.GetAsync(AnchorStoreReady);
     }

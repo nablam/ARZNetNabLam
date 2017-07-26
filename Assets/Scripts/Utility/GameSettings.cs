@@ -141,9 +141,15 @@ public class GameSettings : MonoBehaviour {
     public bool IsLeanPath;
 
     public int numberOfPAthsPerSpawnPoint;
+    public int zombieHealth;
+    public int damage;
+    public float range;
     #endregion
     void Start()
     {
+        zombieHealth = 100;
+        damage = 26;
+        range = 200f;
         // ShowGridPointMesh = true;
         // ShowNodeTag = true;
 
@@ -153,7 +159,7 @@ public class GameSettings : MonoBehaviour {
 
         SegmentSizeMaster = .25f;
 
-        spawndelay = 10f;
+        spawndelay = 1;
         SpawnInterval = 10f;
         TotalZombiesToSpawn = 20;
 

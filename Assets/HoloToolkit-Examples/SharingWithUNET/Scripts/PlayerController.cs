@@ -57,8 +57,9 @@ namespace HoloToolkit.Examples.SharingWithUNET
         private NetworkInstanceId _playerNetId;
 
         string sID;
-   
 
+        public GameObject bloood1;
+        public GameObject bloood1Net;
         private void SetID()
         {
             _playerNetId = GetComponent<NetworkIdentity>().netId;
@@ -74,6 +75,13 @@ namespace HoloToolkit.Examples.SharingWithUNET
            // this.gameObject.name = "ship_" + str;
         }
 
+
+
+
+        GameObject ScoreBox;
+  
+
+
         private void Start()
         {
             if (SharedCollection.Instance == null)
@@ -83,10 +91,16 @@ namespace HoloToolkit.Examples.SharingWithUNET
                 return;
             }
             SetID();
+            damage = GameSettings.Instance.damage ;
+            range = GameSettings.Instance.range;
 
 
             if (isLocalPlayer)
             {
+
+
+                ScoreBox = GameObject.Find("ScoreOBJNET");
+                ScoreBox.GetComponent<ScoreNet>().RegisterPlayer(_playerNetId.Value);
                 // If we are the local player then we want to have airtaps 
                 // sent to this object so that projeciles can be spawned.
                 InputManager.Instance.AddGlobalListener(gameObject);
@@ -99,7 +113,10 @@ namespace HoloToolkit.Examples.SharingWithUNET
 
 
                 if (isServer)
+                {
                     GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+
+                }
                 else
                     GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
             }
@@ -181,17 +198,18 @@ namespace HoloToolkit.Examples.SharingWithUNET
         }
 
         private RaycastHit hit;
-        private int damage = 100;
+        private int damage = 26;
         private float range = 200;
         void LazerShoot()
         {
+            Debug.Log("pew pew");
             if (Physics.Raycast(transform.TransformPoint(0, 0, 0.5f), transform.forward, out hit, range))
             {
                 //Debug.Log(hit.transform.tag);
                 if (hit.transform.tag == "ZombieTag")
                 {
                     string uIdentity = hit.transform.gameObject.name;
-                    CmdTellServerWhichZombieWasShot(uIdentity, damage);
+                    CmdTellServerWhichZombieWasShot(uIdentity, damage, _playerNetId.Value);
                 }
             }
         }
@@ -199,10 +217,12 @@ namespace HoloToolkit.Examples.SharingWithUNET
      
 
         [Command]
-        void CmdTellServerWhichZombieWasShot(string uniqueID, int dmg)
+        void CmdTellServerWhichZombieWasShot(string uniqueID, int dmg, uint argplayerID)
         {
+            Debug.Log("zclient sent this to server to invoke ");
             GameObject go = GameObject.Find(uniqueID);
-            go.GetComponent<HealthCombat>().TakeDamage(dmg);
+            if (go != null) { Debug.Log("server found ths Zombie hit "); } else { Debug.Log("server Cannot find "); }
+            go.GetComponent<HealthCombat>().TakeDamage(dmg, argplayerID);
         }
     }
 }
