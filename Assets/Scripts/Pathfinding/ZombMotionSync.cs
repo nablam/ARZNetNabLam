@@ -1,19 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
-
+[NetworkSettings(sendInterval = 0.033f)]
 public class ZombMotionSync : NetworkBehaviour
 {
     [SyncVar]
     private Vector3 syncPos;
     [SyncVar]
     private float syncYRot;
+    [SyncVar]
+    private Quaternion syncLocalRot;
 
     private Vector3 lastPos;
     private Quaternion lastRot;
     private Transform myTransform;
     private float lerpRate = 10;
-    private float posThreshold = 0.5f;
+    private float posThreshold = 0.25f;
     private float rotThreshold = 5;
 
     // Use this for initialization
@@ -25,8 +27,41 @@ public class ZombMotionSync : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        TransmitMotion();
-        LerpMotion();
+        //if (!isServer) return;
+        //// TransmitMotion();
+        //// LerpMotion();
+        //syncPos = transform.localPosition;
+        //syncLocalRot = transform.localRotation;
+        //CmdNoCmdIalServerTransform(syncPos, syncLocalRot);
+        simpleTransmit();
+        simpleReceive();
+    }
+
+
+    void simpleTransmit()
+    {
+        if (!isServer)
+        {
+            return;
+        }
+        syncPos = myTransform.localPosition;     
+    }
+    void simpleReceive()
+    {
+        if (isServer)
+        {
+            return;
+        }
+        myTransform.position = syncPos;
+    }
+
+    [Command]
+    public void CmdNoCmdIalServerTransform(Vector3 postion, Quaternion rotation)
+    {
+       
+            syncPos = postion;
+            syncLocalRot=rotation;
+     
     }
 
     void TransmitMotion()

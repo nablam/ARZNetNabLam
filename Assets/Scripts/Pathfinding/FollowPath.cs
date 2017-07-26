@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class FollowPath : NetworkBehaviour
 {
-
+    public TextMesh tm;
  
     Vector3? targetPathNode_POS=null;
     int pathNodeIndex = 0;
@@ -19,7 +19,7 @@ public class FollowPath : NetworkBehaviour
     void Start() {
         ZombieMoveSpeed = GameSettings.Instance.Zspeed;
         ZombieRotatSpeed = GameSettings.Instance.ZRotateSpeed;
-        this.transform.SetParent(SharedCollection.Instance.transform, false);
+       // this.transform.SetParent(SharedCollection.Instance.transform, false);
     }
     //this is set by Spawner. It is the one to decide what player will be attacked by this zombie that it spawned
     public void FollowThisPath(List<Vector3> argPATH) {
@@ -31,27 +31,27 @@ public class FollowPath : NetworkBehaviour
         }
 
         ATTACKPATH =  argPATH;
-        Debug.Log("z i waz gives argPATH with -> nodes = " + ATTACKPATH.Count);
-        Debug.Log("I start at " + transform.position + " aka loc " + transform.localPosition);
+        //Debug.Log("z i waz gives argPATH with -> nodes = " + ATTACKPATH.Count);
+        //Debug.Log("I start at " + transform.position + " aka loc " + transform.localPosition);
 
-        if (argPATH.Count > 0) { Debug.Log("first   " + ATTACKPATH[0]);
-                                 Debug.Log("second  " + ATTACKPATH[1]); }
-        if (argPATH.Count > 1) { Debug.Log("third   " + ATTACKPATH[2]); }
-        if (argPATH.Count > 2) { Debug.Log("fourth  " + ATTACKPATH[3]); }
+        //if (argPATH.Count > 0) { Debug.Log("first   " + ATTACKPATH[0]);
+        //                         Debug.Log("second  " + ATTACKPATH[1]); }
+        //if (argPATH.Count > 1) { Debug.Log("third   " + ATTACKPATH[2]); }
+        //if (argPATH.Count > 2) { Debug.Log("fourth  " + ATTACKPATH[3]); }
     }
 
     void GetNextPathNode()
     {
-        Debug.Log("getting next node");
+       // Debug.Log("getting next node");
         if (pathNodeIndex < ATTACKPATH.Count)
         {
             targetPathNode_POS = ATTACKPATH[pathNodeIndex];
-            Debug.Log("next node is "+ targetPathNode_POS);
+           // Debug.Log("next node is "+ targetPathNode_POS);
             pathNodeIndex++;
         }
         else
         {
-            Debug.Log("reachedend");
+           // Debug.Log("reachedend");
             targetPathNode_POS = null;
             ReachedGoal();
         }
@@ -60,7 +60,7 @@ public class FollowPath : NetworkBehaviour
     void FixedUpdate(){
         if (!isServer)
         {
-            Debug.Log(" z is not server!");
+           // Debug.Log(" z is not server!");
             return;
         }
 

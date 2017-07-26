@@ -148,6 +148,7 @@ public class GameSettings : MonoBehaviour {
     public float ZRotateSpeed;
 
     // spawnpoint spawns TotalZombiesToSpawn zombies . One Zombiew evry SpawnInterval 
+    public float spawndelay;
     public float SpawnInterval;
     public int TotalZombiesToSpawn;
 
@@ -166,8 +167,10 @@ public class GameSettings : MonoBehaviour {
         BottomSegmentSizeMaster = 3f;
 
         SegmentSizeMaster = 0.5f;
+
+        spawndelay = 30f;
         SpawnInterval = 10f;
-        TotalZombiesToSpawn = 10;
+        TotalZombiesToSpawn = 8;
 
 
         Zspeed = 0.1f;

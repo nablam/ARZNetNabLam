@@ -132,3 +132,9 @@ MonoBehaviour:
   ZWithFollow: {fileID: 1867939041253326, guid: f52d12124580c2147b3415fdd99d0a73,
     type: 2}
   Zbetter: {fileID: 1375377226371506, guid: af81236d725c7d34f9bd359afcce12ac, type: 2}
+  ZbetterCubeFirst: {fileID: 1544340503469008, guid: 357e8fc13a0179b499b6edd2f208bcc0,
+    type: 2}
+  ZbetterrootCubeTextAllNested: {fileID: 1176860827871902, guid: 964ffda6fcb048b45804b93ca13aa27c,
+    type: 2}
+  ZbetterrootONly: {fileID: 1656473469318182, guid: e2888e3614a89e24b89f8ebcbb93841a,
+    type: 2}
