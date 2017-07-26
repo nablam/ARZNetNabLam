@@ -29,12 +29,7 @@ public class ZombMotionSync : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (!isServer) return;
-        //// TransmitMotion();
-        //// LerpMotion();
-        //syncPos = transform.localPosition;
-        //syncLocalRot = transform.localRotation;
-        //CmdNoCmdIalServerTransform(syncPos, syncLocalRot);
+       
         simpleTransmit();
         simpleReceive();
     }
