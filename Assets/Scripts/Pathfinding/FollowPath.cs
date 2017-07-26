@@ -7,7 +7,25 @@ using UnityEngine.Networking;
 public class FollowPath : NetworkBehaviour
 {
     public TextMesh tm;
- 
+    private NetworkInstanceId _Zid;
+
+    string sID;
+    private void SetID()
+    {
+       
+        _Zid = GetComponent<NetworkIdentity>().netId;
+        sID = _Zid.ToString();
+        tm.text = "Z_"+sID;
+        this.gameObject.name = "Z_" + sID;
+        if (isServer) RpcSetClientID(sID);
+    }
+    void RpcSetClientID(string str)
+    {
+        tm.text = "Z_" + str;
+        this.gameObject.name = "Z_" + str;
+    }
+
+
     Vector3? targetPathNode_POS=null;
     int pathNodeIndex = 0;
     List<Vector3> ATTACKPATH; List<Vector3> ATTConvertedBack;
@@ -19,6 +37,7 @@ public class FollowPath : NetworkBehaviour
     void Start() {
         ZombieMoveSpeed = GameSettings.Instance.Zspeed;
         ZombieRotatSpeed = GameSettings.Instance.ZRotateSpeed;
+        SetID();
        // No parenting here , we will be sycing relativ pos and rots (relatove to worldanchor)
     }
     //this is set by Spawner. It is the one to decide what player will be attacked by this zombie that it spawned

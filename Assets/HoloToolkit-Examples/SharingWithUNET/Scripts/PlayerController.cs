@@ -13,6 +13,8 @@ namespace HoloToolkit.Examples.SharingWithUNET
     [NetworkSettings(sendInterval = 0.033f)]
     public class PlayerController : NetworkBehaviour, IInputClickHandler
     {
+
+        public TextMesh tm;
         /// <summary>
         /// The game object that represents the 'bullet' for 
         /// this player. Must exist in the spawnable prefabs on the
@@ -52,6 +54,26 @@ namespace HoloToolkit.Examples.SharingWithUNET
             }
         }
 
+        private NetworkInstanceId _playerNetId;
+
+        string sID;
+   
+
+        private void SetID()
+        {
+            _playerNetId = GetComponent<NetworkIdentity>().netId;
+            sID = _playerNetId.ToString();
+            tm.text = sID;
+            if (isServer)
+                RpcSetClientID(sID);
+        }
+
+        void RpcSetClientID(string str)
+        {
+            tm.text = str;
+           // this.gameObject.name = "ship_" + str;
+        }
+
         private void Start()
         {
             if (SharedCollection.Instance == null)
@@ -60,6 +82,8 @@ namespace HoloToolkit.Examples.SharingWithUNET
                 Destroy(this);
                 return;
             }
+            SetID();
+
 
             if (isLocalPlayer)
             {
@@ -71,8 +95,16 @@ namespace HoloToolkit.Examples.SharingWithUNET
             else
             {
                 Debug.Log("remote player");
-                GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+
+
+                if (isServer)
+                    GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+                else
+                    GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
             }
+
+
 
             sharedWorldAnchorTransform = SharedCollection.Instance.gameObject.transform;
             transform.SetParent(sharedWorldAnchorTransform);

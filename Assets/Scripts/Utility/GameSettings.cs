@@ -151,19 +151,20 @@ public class GameSettings : MonoBehaviour {
         heiMaster = 4;
         BottomSegmentSizeMaster = 3f;
 
-        SegmentSizeMaster = 0.2f;
+        SegmentSizeMaster = .25f;
 
-        spawndelay = 45f;
+        spawndelay = 10f;
         SpawnInterval = 10f;
         TotalZombiesToSpawn = 20;
 
 
-        Zspeed = 0.1f;
+        Zspeed = 0.2f;
         ZRotateSpeed = 10f;
 
         numberOfPAthsPerSpawnPoint = 2;
 
         applyCostTweek = true;
+        IsLeanPath = true;
     }
 
 }

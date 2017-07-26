@@ -19,6 +19,7 @@ public class GrabPathsStar : NetworkBehaviour
     public GameObject ZbetterCubeFirst;   //  Root[empty-syncmotion, followpath] -->child1-> netser cubes  Child2=text
     public GameObject ZbetterrootCubeTextAllNested; //  Root[empty-syncmotion, followpath] -->Child1=text -> netser cubes
     public GameObject ZbetterrootONly;     //  Rootobject is a mesh with syncmotion 
+    public GameObject ZbetterrootONlyOLD;
 
     GameObject _Z1FOUND;
     GameObject _Z2Found;
