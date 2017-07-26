@@ -39,6 +39,9 @@ public class GrabPathsStar : NetworkBehaviour
         initmeWhenIAwakeOnServer();
     }
 
+    List<List<Vector3>> Paths_to_ZONE1;
+    List<List<Vector3>> Paths_to_Zone2;
+
     //maybe a command is better , it will execute on server 
     void initmeWhenIAwakeOnServer() {
       
@@ -58,7 +61,9 @@ public class GrabPathsStar : NetworkBehaviour
         //todo: deciding who to attack should be done on each sawn
         DecideWhoToAttack();
 
-       // Debug.Log("decided to attack zoneone " + AttackingZone1);
+        Paths_to_ZONE1= GOpm.GiveMeMyPathsForIamNetworkedSpawnNET(_Z1FOUND, _MycorrespondingSpawnTagObject);
+        Paths_to_Zone2 = GOpm.GiveMeMyPathsForIamNetworkedSpawnNET(_Z2Found, _MycorrespondingSpawnTagObject);
+        // Debug.Log("decided to attack zoneone " + AttackingZone1);
         if (AttackingZone1)
         {
             Paths_to_ChosenZone_Grabbed = GOpm.GiveMeMyPathsForIamNetworkedSpawnNET(_Z1FOUND, _MycorrespondingSpawnTagObject);
@@ -76,14 +81,19 @@ public class GrabPathsStar : NetworkBehaviour
     {
         AttackingZone1 = Random.Range(0, 100) % 2 == 0 ? true : false;
     }
+
+    bool RandYesNo()
+    {
+       return Random.Range(0, 100) % 2 == 0 ? true : false;
+    }
     IEnumerator Startin3()
     {
         Debug.Log("waiting for delay");
         yield return new WaitForSeconds(GameSettings.Instance.spawndelay);
-        BuildStakatoOfZombies();
+        startmakingsomeZes();
     }
 
-    void BuildStakatoOfZombies()
+    void startmakingsomeZes()
     {
         StartCoroutine(MakeZEvryXForTicks());
     }
@@ -105,9 +115,11 @@ public class GrabPathsStar : NetworkBehaviour
         //foreach (Vector3 v3 in Paths_to_ChosenZone_Grabbed[0]) {
         //    conertedToinversShared.Add(sharedWorldAnchorTransform.InverseTransformPoint(v3));
         //}
+        if(RandYesNo())
+        go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ZONE1[GetRandomPathIndexZ1()]);
+        else
+            go.GetComponent<FollowPath>().FollowThisPath(Paths_to_Zone2[GetRandomPathIndexZ2()]);
 
-        go.GetComponent<FollowPath>().FollowThisPath(Paths_to_ChosenZone_Grabbed[GetRandomPathIndex()]);
- 
         NetworkServer.Spawn(go);
   
     }
@@ -117,6 +129,16 @@ public class GrabPathsStar : NetworkBehaviour
         return  Random.Range(0, Paths_to_ChosenZone_Grabbed.Count);
     }
 
+    int GetRandomPathIndexZ1()
+    {
+
+        return Random.Range(0, Paths_to_ZONE1.Count);
+    }
+    int GetRandomPathIndexZ2()
+    {
+
+        return Random.Range(0, Paths_to_Zone2.Count);
+    }
 
 
 }

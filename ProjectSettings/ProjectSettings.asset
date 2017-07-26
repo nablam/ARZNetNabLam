@@ -597,11 +597,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: ARZN
   metroPackageVersion: 0.4.0.1
-  metroCertificatePath: 
+  metroCertificatePath: D:\_nabdir\AR_Z_main\ARZNetNablamGit\ARZNetNabLam\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 80533a392c17d301
   metroApplicationDescription: ARZmp newmaster develop
   wsaImages: {}
   metroTileShortName: ARZNetn

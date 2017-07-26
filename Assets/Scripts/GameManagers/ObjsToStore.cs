@@ -12,7 +12,7 @@ public class ObjsToStore : MonoBehaviour
     public void SaveAllTheseBAdBoysToStore(List<GameObject> argObjsToStore) {
 
         Debug.Log("in obj to store and about to save lets read lets read");
-        DictoPlacedObjects.Instance.DICT_ReadAll();
+       // DictoPlacedObjects.Instance.DICT_ReadAll();
 
         foreach (GameObject go in argObjsToStore)
         {

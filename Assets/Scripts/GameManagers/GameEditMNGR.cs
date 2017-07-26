@@ -49,7 +49,7 @@ public class GameEditMNGR : MonoBehaviour {
             go.name = thename;
 
             DictoPlacedObjects.Instance.AddPlacedGOToListOfPlacedGos(go);
-            Debug.Log("placing " + thename);
+            //Debug.Log("placing " + thename);
         }
     }
 

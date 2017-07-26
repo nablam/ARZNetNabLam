@@ -160,14 +160,14 @@ public class GameSettings : MonoBehaviour {
         SegmentSizeMaster = .25f;
 
         spawndelay = 1;
-        SpawnInterval = 10f;
+        SpawnInterval = 4f; //in seconds
         TotalZombiesToSpawn = 20;
 
 
-        Zspeed = 0.2f;
+        Zspeed = 0.3f;
         ZRotateSpeed = 10f;
 
-        numberOfPAthsPerSpawnPoint = 2;
+        numberOfPAthsPerSpawnPoint = 3;
 
         applyCostTweek = true;
         IsLeanPath = true;

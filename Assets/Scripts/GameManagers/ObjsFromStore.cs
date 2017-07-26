@@ -27,7 +27,7 @@ public class ObjsFromStore : MonoBehaviour
     {
         _lobbyMode = argLobbymode;
         //Debug.Log("INNIT OBJFROM WA STORE");
-        DictoPlacedObjects.Instance.DICT_ReadAll();
+       // DictoPlacedObjects.Instance.DICT_ReadAll();
         //only if room is loaded .. handle this with a state machine
         WorldAnchorStore.GetAsync(AnchorStoreReady);
     }
