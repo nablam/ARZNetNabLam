@@ -46,7 +46,9 @@ public class ZombMotionSync : NetworkBehaviour
         {
             return;
         }
-        syncPos = SharedCollection.Instance.gameObject.transform.InverseTransformPoint(myTransform.position);     
+        syncPos = SharedCollection.Instance.gameObject.transform.InverseTransformPoint(myTransform.position); 
+        syncLocalRot  = Quaternion.Inverse(SharedCollection.Instance.gameObject.transform.rotation) * myTransform.rotation;
+        syncYRot = myTransform.localEulerAngles.y;
     }
     void simpleReceive()
     {
@@ -55,7 +57,9 @@ public class ZombMotionSync : NetworkBehaviour
             return;
         }
         myTransform.position = SharedCollection.Instance.gameObject.transform.TransformPoint(syncPos);
-      
+        myTransform.rotation = SharedCollection.Instance.gameObject.transform.localRotation * syncLocalRot;
+        //or
+      //  myTransform.rotation=  new Vector3(0, syncYRot, 0);
     }
 
     [Command]
