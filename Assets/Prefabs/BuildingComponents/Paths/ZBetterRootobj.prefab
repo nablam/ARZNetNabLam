@@ -62,6 +62,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1236646709377304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4604532898302722}
+  - component: {fileID: 23313917047521740}
+  - component: {fileID: 102186659472089786}
+  m_Layer: 0
+  m_Name: New Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1407628336264690
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +124,7 @@ GameObject:
   - component: {fileID: 23708673952574578}
   - component: {fileID: 102554427095250128}
   m_Layer: 0
-  m_Name: New Text
+  m_Name: zhealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,9 +144,10 @@ GameObject:
   - component: {fileID: 114667465093017726}
   - component: {fileID: 114876683508539674}
   - component: {fileID: 114331913810194016}
+  - component: {fileID: 114261343436003842}
   m_Layer: 0
   m_Name: ZBetterRootobj
-  m_TagString: Untagged
+  m_TagString: ZombieTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,6 +241,19 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1514734003639038}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.01, y: 1.113, z: 0}
+  m_LocalScale: {x: 0.24999999, y: 0.049999997, z: 0.99999994}
+  m_Children: []
+  m_Father: {fileID: 4821524036210586}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &4604532898302722
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1236646709377304}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 1.304, z: 0}
   m_LocalScale: {x: 0.25, y: 0.05, z: 1}
   m_Children: []
@@ -242,10 +273,11 @@ Transform:
   - {fileID: 4316681311133174}
   - {fileID: 4408015207868432}
   - {fileID: 4313713164615956}
-  - {fileID: 4527623290198754}
+  - {fileID: 4604532898302722}
   - {fileID: 4959544892427402}
   - {fileID: 4249913829192646}
   - {fileID: 4501874262390546}
+  - {fileID: 4527623290198754}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -262,6 +294,38 @@ Transform:
   m_Father: {fileID: 4821524036210586}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23313917047521740
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1236646709377304}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!23 &23379120472012930
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -579,13 +643,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!102 &102554427095250128
+--- !u!102 &102186659472089786
 TextMesh:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1514734003639038}
+  m_GameObject: {fileID: 1236646709377304}
   m_Text: Z ID
   m_OffsetZ: 0
   m_CharacterSize: 1
@@ -600,6 +664,42 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!102 &102554427095250128
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1514734003639038}
+  m_Text: health
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4280427263
+--- !u!114 &114261343436003842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1656473469318182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a72964870b09ba44a87c709f9eb1e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tmhealth: {fileID: 102554427095250128}
+  bloodSplat: {fileID: 132692, guid: 48c645a2f17405a409db6011b5456785, type: 2}
+  bloodSplatNET: {fileID: 1234453759884130, guid: 04713f220017b2541bddbc78624e5dd8,
+    type: 2}
 --- !u!114 &114331913810194016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,8 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd414016cd76f6a4489ef76fde615773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tm: {fileID: 102554427095250128}
-  health: 1
+  tm: {fileID: 102186659472089786}
 --- !u!114 &114667465093017726
 MonoBehaviour:
   m_ObjectHideFlags: 1

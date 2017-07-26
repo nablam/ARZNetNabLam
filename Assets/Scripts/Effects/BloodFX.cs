@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class BloodFX : MonoBehaviour {
 
+
     [Tooltip("List of prefabs randomly generated on head shots.")]
     public GameObject[] HeadShotBloodPrefabs;
 
@@ -18,15 +19,8 @@ public class BloodFX : MonoBehaviour {
     [Tooltip("How long the effect will remail active before destroying it.")]
     public float killDelay = 3.0f;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+
 
     public void HeadShotFX(RaycastHit hitInfo)
     {
@@ -51,4 +45,6 @@ public class BloodFX : MonoBehaviour {
         KillTimer t = obj.AddComponent<KillTimer>();
         t.StartTimer(killDelay);
     }
+
+
 }

@@ -175,8 +175,34 @@ namespace HoloToolkit.Examples.SharingWithUNET
         {
             if (isLocalPlayer)
             {
-                CmdFire();
+                //CmdFire();
+                LazerShoot();
             }
+        }
+
+        private RaycastHit hit;
+        private int damage = 100;
+        private float range = 200;
+        void LazerShoot()
+        {
+            if (Physics.Raycast(transform.TransformPoint(0, 0, 0.5f), transform.forward, out hit, range))
+            {
+                //Debug.Log(hit.transform.tag);
+                if (hit.transform.tag == "ZombieTag")
+                {
+                    string uIdentity = hit.transform.gameObject.name;
+                    CmdTellServerWhichZombieWasShot(uIdentity, damage);
+                }
+            }
+        }
+
+     
+
+        [Command]
+        void CmdTellServerWhichZombieWasShot(string uniqueID, int dmg)
+        {
+            GameObject go = GameObject.Find(uniqueID);
+            go.GetComponent<HealthCombat>().TakeDamage(dmg);
         }
     }
 }

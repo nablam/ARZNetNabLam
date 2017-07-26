@@ -32,7 +32,7 @@ public class FollowPath : NetworkBehaviour
     float ZombieMoveSpeed;//= 1f;
     float ZombieRotatSpeed;// = 10f;
 
-    public float health = 1f;
+   // public float health = 1f;
 
     void Start() {
         ZombieMoveSpeed = GameSettings.Instance.Zspeed;
@@ -98,21 +98,6 @@ public class FollowPath : NetworkBehaviour
          Destroy(gameObject);
     }
 
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-    public void Die()
-    {
-        // TODO: Do this more safely!
-        //let spawnSingle know about this
-         Destroy(gameObject);
-    }
 
     void OnTriggerEnter(Collider arCol)
     {

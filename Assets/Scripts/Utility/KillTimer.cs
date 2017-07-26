@@ -11,7 +11,7 @@ public class KillTimer : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        isStarted = false;
     }
 
     // Update is called once per frame
